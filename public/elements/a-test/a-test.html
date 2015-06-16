@@ -9,15 +9,70 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800">
+
 
 <dom-module id="a-test">
   <style>
     :host {
       display: block;
+      width: 100%;
+      background-color: #D9F299;
+      margin: 0px;
+      padding: 50px 0px 50px 0px;
+      font-family: 'Open Sans', sans-serif;
+      @apply(--layout-vertical);
+      @apply(--layout-center);
     }
+
+    h3 {
+      margin: 0px;
+      padding: 0px;
+      font-weight: 300;
+    }
+
+
+    button {
+      border-radius: 0px;
+      outline: 0;
+      border-style:solid;
+      -webkit-appearance: none;
+    }
+
+
+
+    input {
+      border-radius: 0px;
+      outline: 0;
+      border:none;
+      -webkit-appearance: none;
+
+    }
+
+    #geoloc {
+      margin-top: 20px;
+    }
+
+
   </style>
   <template>
-    <div><span>{{foo}}</span></div>
+<!--     <div><span>{{foo}}</span></div> -->
+  <div>
+    <h3>Geef je postcode in:</h3>
+    <input>
+    <h3>Geef je straat in:</h3>
+    <input>
+    <button>Gaan!</button>
+  
+
+  </div>
+
+
+  <div id="geoloc">
+    <button>Gebruik mijn huidige locatie!</button>
+  </div>
+
   </template>
 </dom-module>
 <script>
