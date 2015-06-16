@@ -1,0 +1,14 @@
+{
+  "name": "ophaal",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "iron-elements": "polymerelements/iron-elements#~1.0.0",
+    "paper-elements": "polymerelements/paper-elements#~1.0.1",
+    "polymer": "Polymer/polymer#^1.0.0"
+  }
+}
