@@ -87,16 +87,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <div id="regloc">
     <h3>Geef je postcode in:</h3>
     <paper-input value={{postal}}></paper-input>
-    <h3>Geef je straat in:</h3>
-    <paper-input></paper-input>
-    <paper-button>Gaan!</paper-button>
+    <template is="dom-if" if="{{postal}}">
+      <h3>Geef je straat in:</h3>
+      <paper-input></paper-input>
+    </template>
   </div>
 
-  <a-streets postal={{postal}}></a-streets>
+  <a-streets postal={{postal}} streets={{kaki}}></a-streets>
 
   <div id="geoloc">
     <button>Gebruik mijn huidige locatie!</button>
   </div>
+  <template is="dom-repeat" items="{{kaki}}">
+  <p>{{item.naam}}</p>
+  </template>
 
   </template>
 </dom-module>
