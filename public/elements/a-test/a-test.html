@@ -12,10 +12,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800">
 <link rel="import" href="../../components/paper-input/paper-input.html">
+<link rel="import" href="../../components/paper-item/paper-item.html">
 
 <link rel="import" href="../a-streets/a-streets.html">
 
 <link rel="import" href="../../components/paper-button/paper-button.html">
+<link rel="import" href="../../components/iron-selector/iron-selector.html">
 
 
 
@@ -124,13 +126,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <a-streets postal={{postal}} street={{street}} streets={{kaki}}></a-streets>
 
 <template is="dom-if" if="{{street}}">
+  <iron-selector attr-for-selected="straatId" selected={{straatselect}}>
+
   <template is="dom-repeat" items="{{kaki}}">
-    <div class="streetz">
-      <h4>{{item.naam}}</h4>
-    </div>
+      <div straatId="{{item.Id}}">{{item.Value}}</div>
   </template>
+</iron-selector>
+
 </template>
 
+
+<p>Ben <span>{{straatselect}}</span></p>
 
   </template>
 </dom-module>
@@ -141,6 +147,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     properties: {
       foo: {
+        type: String,
+        value: 'bar',
+        notify: true
+      },
+      straatselect: {
         type: String,
         value: 'bar',
         notify: true
