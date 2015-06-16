@@ -12,12 +12,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800">
 <link rel="import" href="../../components/paper-input/paper-input.html">
-<<<<<<< HEAD
+
 <link rel="import" href="../a-streets/a-streets.html">
-=======
+
 <link rel="import" href="../../components/paper-button/paper-button.html">
 
->>>>>>> origin/master
+
 
 <dom-module id="a-test">
   <style>
@@ -82,26 +82,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </style>
   <template>
-<<<<<<< HEAD
-    <div><span>{{foo}}</span></div>
-    <paper-input value={{postal}}></paper-input>
-    <a-streets postal={{postal}}></a-streets>
-=======
+
 <!--     <div><span>{{foo}}</span></div> -->
   <div id="regloc">
     <h3>Geef je postcode in:</h3>
-    <paper-input></paper-input>
+    <paper-input value={{postal}}></paper-input>
     <h3>Geef je straat in:</h3>
     <paper-input></paper-input>
     <paper-button>Gaan!</paper-button>
   </div>
 
+  <a-streets postal={{postal}}></a-streets>
 
   <div id="geoloc">
     <button>Gebruik mijn huidige locatie!</button>
   </div>
 
->>>>>>> origin/master
   </template>
 </dom-module>
 <script>
