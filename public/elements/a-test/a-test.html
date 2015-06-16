@@ -126,17 +126,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <a-streets postal={{postal}} street={{street}} streets={{kaki}}></a-streets>
 
 <template is="dom-if" if="{{street}}">
-  <iron-selector attr-for-selected="straatId" selected={{straatselect}}>
+  <iron-selector attr-for-selected="name" selected={{straatselect}}>
 
   <template is="dom-repeat" items="{{kaki}}">
-      <div straatId="{{item.Id}}">{{item.Value}}</div>
+      <div name="{{item.Id}}">{{item.Value}}</div>
   </template>
 </iron-selector>
 
 </template>
 
 
-<p>Ben <span>{{straatselect}}</span></p>
 
   </template>
 </dom-module>
