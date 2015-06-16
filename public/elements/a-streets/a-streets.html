@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-ajax/iron-ajax.html">
 
 <script>
 (function() {
@@ -21,6 +22,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         value: 'empty',
         notify: true,
         observer: 'postalchanged'
+      },
+
+      street: {
+        type: String,
+        value: 'empty',
+        notify: true,
+        observer: 'streetchanged'
       },
 
       streets: {
@@ -39,11 +47,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       postalchanged: function(newValue, oldValue){
         console.log('verandering: ', newValue, oldValue);
-        this.streets = [{'naam': 'gloriantlaan'},{'naam': 'niewe dong'}];
       },
 
-      postalHandler: function(){
-        console.log('handler werkt?');
+      streetchanged: function(newValue, oldValue){
+        console.log('verandering: ', newValue, oldValue);
+        this.streets = [{'naam': 'gloriantlaan'},{'naam': 'niewe dong'}];
       }
 
 

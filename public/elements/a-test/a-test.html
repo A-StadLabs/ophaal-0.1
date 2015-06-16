@@ -108,11 +108,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <paper-input value={{postal}}></paper-input>
     <template is="dom-if" if="{{postal}}">
       <h3>Geef je straat in:</h3>
-      <paper-input></paper-input>
+      <paper-inputvalue={{street}}></paper-input>
     </template>
   </div>
 
-  <a-streets postal={{postal}} streets={{kaki}}></a-streets>
+  <a-streets postal={{postal}} street={{street}} streets={{kaki}}></a-streets>
 
   <div id="geoloc">
     <button>Gebruik mijn huidige locatie!</button>
