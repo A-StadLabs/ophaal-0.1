@@ -19,6 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../components/paper-button/paper-button.html">
 <link rel="import" href="../../components/iron-selector/iron-selector.html">
 
+<link rel="import" href="../../components/iron-ajax/iron-ajax.html">
 
 
 <dom-module id="a-test">
@@ -100,7 +101,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
 
-
+    <iron-ajax
+    handle-as="json"
+    on-response="handleResponse"
+    debounce-duration="300"
+    id="ophaalkal"></iron-ajax>
 
 <!-- 
   <div id="geoloc">
@@ -141,6 +146,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 <script>
 (function() {
+
   Polymer({
     is: 'a-test',
 
@@ -153,8 +159,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       straatselect: {
         type: String,
         value: 'bar',
-        notify: true
+        notify: true,
+        observer: 'selectHandler'
       }
+    },
+
+    selectHandler: function(){
+      console.log(this.straatselect);
+      this.$.ophaalkal.url = '/rides?streetId='+this.straatselect;
+      this.$.ophaalkal.generateRequest();
+    },
+
+    handleResponse: function(e){
+      //console.log(e.detail.response);
+      var Things = e.detail.response;
+      Things.reverse();
+      for (var i = Things.length - 1; i >= 0; i--) {
+        console.log(Things[i]);
+        if(Things[i].start)
+      };
+
     }
   });
 })();
