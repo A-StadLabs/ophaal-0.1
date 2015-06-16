@@ -9,31 +9,52 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../components/polymer/polymer.html">
-<link rel="import" href="../../components/paper-input/paper-input.html">
-
-<dom-module id="a-test">
+<dom-module id="a-streets">
   <style>
     :host {
       display: block;
     }
   </style>
   <template>
-    <div><span>{{foo}}</span></div>
-    <paper-input></paper-input>
+    <div><span>{{postal}}</span></div>
   </template>
 </dom-module>
 <script>
 (function() {
   Polymer({
-    is: 'a-test',
+    is: 'a-streets',
 
     properties: {
-      foo: {
+      postal: {
         type: String,
-        value: 'bar',
+        value: 'empty',
+        notify: true,
+        observer: 'postalhanged'
+      },
+
+      streets: {
+        type: Array,
+        value: [],
         notify: true
       }
-    }
+
+    },
+
+
+      ready: function(){
+        console.log('i has streets loaded');
+      },
+
+      postalhanged: function(newValue, oldValue){
+        console.log('verandering: ', newValue, oldValue);
+      },
+
+      postalHandler: function(){
+        console.log('handler werkt?');
+      }
+
+
+    
   });
 })();
 </script>
