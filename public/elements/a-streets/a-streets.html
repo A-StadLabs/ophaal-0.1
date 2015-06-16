@@ -20,13 +20,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: String,
         value: 'empty',
         notify: true,
-        observer: 'postalhanged'
+        observer: 'postalchanged'
       },
 
       streets: {
         type: Array,
         value: [],
-        notify: true
+        notify: true,
+        reflectToAttribute: true
       }
 
     },
@@ -36,8 +37,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         console.log('i has streets loaded');
       },
 
-      postalhanged: function(newValue, oldValue){
+      postalchanged: function(newValue, oldValue){
         console.log('verandering: ', newValue, oldValue);
+        this.streets = [{'naam': 'gloriantlaan'},{'naam': 'niewe dong'}];
       },
 
       postalHandler: function(){
