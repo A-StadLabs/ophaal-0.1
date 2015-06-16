@@ -41,24 +41,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
 
+    h4 {
+      margin: 0px;
+      padding: 0px;
+      font-weight: 300;
+      font-size: 16px;
+
+    }
+
+
+
+
     paper-button {
       border-radius: 0px;
       outline: 0;
       border-style:solid;
       -webkit-appearance: none;
     }
-
-
-
-/*    paper-input {
-      border-radius: 0px;
-      outline: 0;
-      border:none;
-      -webkit-appearance: none;
-      background-color: white;
-      font-size: 12px;
-      width: 100%;
-    }*/
 
 
     paper-input-container{
@@ -71,7 +70,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
     #regloc {
-        width: 40%;
+      margin-top: 20px;
+      width: 60%;
     }
 
     #geoloc {
@@ -87,39 +87,50 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       background-color: 
     }
 
+    .streetz {
+      border-bottom: 1px solid #A1B56E;
+      margin: 0px;
+      padding: 10px 0px 10px 0px; 
+      width: 60%;
+      background-color: white;
+    }
 
   </style>
   <template>
 
-<!--     <div><span>{{foo}}</span></div> -->
+
+
+<!-- 
+  <div id="geoloc">
+    <button>Gebruik mijn huidige locatie!</button>
+  </div> -->
   <div id="regloc">
-    <h3>Geef je postcode in:</h3>
-<!--     <paper-input value={{postal}}></paper-input> -->
+    <h3>Geef een adres op</h3>
 
-<paper-input-container value={{postal}}>
-  <input is="iron-input" maxlength="4" prevent-invalid-input allowed-pattern="[0-9]" label="Postcode bitte?">
-    <paper-input-char-counter></paper-input-char-counter>
-
+<paper-input-container>
+  <label>Postcode</label>
+  <input is="iron-input" maxlength="4" prevent-invalid-input allowed-pattern="[0-9]"  bind-value="{{postal}}">
+  <paper-input-char-counter></paper-input-char-counter>
 </paper-input-container>
-    <h3>Geef je straat in:</h3>
 
-
-
-    <paper-input value={{postal}}></paper-input>
-    <template is="dom-if" if="{{postal}}">
-      <h3>Geef je straat in:</h3>
-      <paper-inputvalue={{street}}></paper-input>
+<template is="dom-if" if="{{postal}}">
+<paper-input-container>
+  <label>Straat</label>
+  <input is="iron-input" bind-value="{{street}}">
+</paper-input-container>
     </template>
   </div>
 
   <a-streets postal={{postal}} street={{street}} streets={{kaki}}></a-streets>
 
-  <div id="geoloc">
-    <button>Gebruik mijn huidige locatie!</button>
-  </div>
+<template is="dom-if" if="{{street}}">
   <template is="dom-repeat" items="{{kaki}}">
-  <p>{{item.naam}}</p>
+    <div class="streetz">
+      <h4>{{item.naam}}</h4>
+    </div>
   </template>
+</template>
+
 
   </template>
 </dom-module>
