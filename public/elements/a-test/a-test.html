@@ -9,19 +9,99 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800">
 <link rel="import" href="../../components/paper-input/paper-input.html">
+<<<<<<< HEAD
 <link rel="import" href="../a-streets/a-streets.html">
+=======
+<link rel="import" href="../../components/paper-button/paper-button.html">
+
+>>>>>>> origin/master
 
 <dom-module id="a-test">
   <style>
     :host {
       display: block;
+      width: 100%;
+      background-color: #D9F299;
+      margin: 0px;
+      padding: 20px 0px 50px 50px;
+      font-family: 'Open Sans', sans-serif;
+
+      @apply(--layout-vertical);
+      @apply(--layout-start);
     }
+
+    h3 {
+      margin: 30px 0px 10px 0px;
+      padding: 0px;
+      font-weight: 300;
+      font-size: 22px;
+    }
+
+
+    paper-button {
+      border-radius: 0px;
+      outline: 0;
+      border-style:solid;
+      -webkit-appearance: none;
+    }
+
+
+
+/*    paper-input {
+      border-radius: 0px;
+      outline: 0;
+      border:none;
+      -webkit-appearance: none;
+      background-color: white;
+      font-size: 12px;
+      width: 100%;
+    }*/
+
+
+    paper-input{
+      --paper-input-container-color: #A1B56E;
+      --paper-input-container-focus-color:black;
+
+    }
+
+
+
+
+    #regloc {
+        width: 40%;
+    }
+
+    #geoloc {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+
   </style>
   <template>
+<<<<<<< HEAD
     <div><span>{{foo}}</span></div>
     <paper-input value={{postal}}></paper-input>
     <a-streets postal={{postal}}></a-streets>
+=======
+<!--     <div><span>{{foo}}</span></div> -->
+  <div id="regloc">
+    <h3>Geef je postcode in:</h3>
+    <paper-input></paper-input>
+    <h3>Geef je straat in:</h3>
+    <paper-input></paper-input>
+    <paper-button>Gaan!</paper-button>
+  </div>
+
+
+  <div id="geoloc">
+    <button>Gebruik mijn huidige locatie!</button>
+  </div>
+
+>>>>>>> origin/master
   </template>
 </dom-module>
 <script>
