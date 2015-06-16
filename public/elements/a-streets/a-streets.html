@@ -19,7 +19,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
     <iron-ajax
-    url="/adres"
     handle-as="json"
     on-response="handleResponse"
     debounce-duration="300"
@@ -35,11 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     properties: {
       postal: {
         type: String,
-<<<<<<< Updated upstream
-        value: null,
-=======
         value: '',
->>>>>>> Stashed changes
         notify: true,
         observer: 'postalchanged'
       },
@@ -62,16 +57,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
       ready: function(){
-        console.log('i has streets loaded');
+        //console.log('i has streets loaded');
       },
 
       postalchanged: function(newValue, oldValue){
-        console.log('verandering: ', newValue, oldValue);
+        //console.log('verandering: ', newValue, oldValue);
       },
 
       streetchanged: function(newValue, oldValue){
-        console.log('verandering: ', newValue, oldValue);
-        this.streets = [{'naam': 'gloriantlaan'},{'naam': 'niewe dong'}];
+        //console.log('verandering: ', newValue, oldValue);
+        //this.streets = [{'naam': 'gloriantlaan'},{'naam': 'niewe dong'}];
+        this.$.adres.url = '/adres?street='+this.street+'&postal='+this.postal;
+        this.$.adres.generateRequest();
+      },
+
+      handleResponse: function(e){
+        //console.log(e.detail.response);
+        this.streets = e.detail.response;
       }
 
 
