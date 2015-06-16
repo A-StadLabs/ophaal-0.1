@@ -61,7 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }*/
 
 
-    paper-input{
+    paper-input-container{
       --paper-input-container-color: #A1B56E;
       --paper-input-container-focus-color:black;
 
@@ -80,16 +80,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
 
+    .btnz {
+      margin: 0px;
+      padding: 0px;
+      border: none;
+      background-color: 
+    }
+
+
   </style>
   <template>
 
 <!--     <div><span>{{foo}}</span></div> -->
   <div id="regloc">
     <h3>Geef je postcode in:</h3>
-    <paper-input value={{postal}}></paper-input>
+<!--     <paper-input value={{postal}}></paper-input> -->
+
+<paper-input-container value={{postal}}>
+  <input is="iron-input" maxlength="4" prevent-invalid-input allowed-pattern="[0-9]" label="Postcode bitte?">
+    <paper-input-char-counter></paper-input-char-counter>
+
+</paper-input-container>
     <h3>Geef je straat in:</h3>
-    <paper-input></paper-input>
-    <paper-button>Gaan!</paper-button>
+
+
+<!--     <paper-input></paper-input> -->
+    <paper-button class="btnz">Gaan!</paper-button>
   </div>
 
   <a-streets postal={{postal}}></a-streets>
