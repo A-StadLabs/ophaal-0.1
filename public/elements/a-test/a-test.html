@@ -9,13 +9,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../components/polymer/polymer.html">
-<<<<<<< HEAD
 <link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800">
-
-=======
 <link rel="import" href="../../components/paper-input/paper-input.html">
->>>>>>> origin/master
+<link rel="import" href="../../components/paper-button/paper-button.html">
+
 
 <dom-module id="a-test">
   <style>
@@ -24,20 +22,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 100%;
       background-color: #D9F299;
       margin: 0px;
-      padding: 50px 0px 50px 0px;
+      padding: 20px 0px 50px 50px;
       font-family: 'Open Sans', sans-serif;
+
       @apply(--layout-vertical);
-      @apply(--layout-center);
+      @apply(--layout-start);
     }
 
     h3 {
-      margin: 0px;
+      margin: 30px 0px 10px 0px;
       padding: 0px;
       font-weight: 300;
+      font-size: 22px;
     }
 
 
-    button {
+    paper-button {
       border-radius: 0px;
       outline: 0;
       border-style:solid;
@@ -46,31 +46,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 
-    input {
+/*    paper-input {
       border-radius: 0px;
       outline: 0;
       border:none;
       -webkit-appearance: none;
+      background-color: white;
+      font-size: 12px;
+      width: 100%;
+    }*/
 
+
+    paper-input{
+      --paper-input-container-color: #A1B56E;
+      --paper-input-container-focus-color:black;
+
+    }
+
+
+
+
+    #regloc {
+        width: 40%;
     }
 
     #geoloc {
       margin-top: 20px;
+      width: 100%;
     }
 
 
   </style>
   <template>
-<<<<<<< HEAD
 <!--     <div><span>{{foo}}</span></div> -->
-  <div>
+  <div id="regloc">
     <h3>Geef je postcode in:</h3>
-    <input>
+    <paper-input></paper-input>
     <h3>Geef je straat in:</h3>
-    <input>
-    <button>Gaan!</button>
-  
-
+    <paper-input></paper-input>
+    <paper-button>Gaan!</paper-button>
   </div>
 
 
@@ -78,10 +92,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <button>Gebruik mijn huidige locatie!</button>
   </div>
 
-=======
-    <div><span>{{foo}}</span></div>
-    <paper-input></paper-input>
->>>>>>> origin/master
   </template>
 </dom-module>
 <script>
