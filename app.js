@@ -47,7 +47,7 @@ app.get('/rides', function(req, res){
   var id = req.query.id;
   var housenumber = req.query.housenumber;
   //req.session.userobject;
-  request.get({url: 'http://www.ophaalkalender.be/api/rides?id='+id+'&housenumber='+housenumber+'&start=1433109600&end=1436738400&_=1434456216844' }, function(error, response, body){
+  request.get({url: 'http://www.ophaalkalender.be/api/rides?id='+id+'&housenumber='+housenumber+'0&start=1433109600&end=1436738400&_=1434456216844' }, function(error, response, body){
       res.send(body);
   });
 });
