@@ -6,6 +6,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var request = require('request');
+
 
 var app = express();
 
@@ -24,6 +26,31 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// HIER DUS WA APIS AANSPREKEN
+// Search voor infofiches
+app.get('/adres', function(req, res){
+  var street = req.query.street;
+  var postal = req.query.postal;
+  //req.session.userobject;
+  request.get({url: 'http://www.ophaalkalender.be/calendar/findstreets?query='+street+'&zipcode='+postal }, function(error, response, body){
+      res.send(body);
+  });
+});
+
+//http://www.ophaalkalender.be/calendar/findstreets?query=g&zipcode=2050
+
+
+// Get rides
+//http://www.ophaalkalender.be/api/rides?id=100442&housenumber=0&start=1433109600&end=1436738400&_=1434456216844
+app.get('/rides', function(req, res){
+  var id = req.query.id;
+  var housenumber = req.query.housenumber;
+  //req.session.userobject;
+  request.get({url: 'http://www.ophaalkalender.be/api/rides?id='+id+'&housenumber='+housenumber+'&start=1433109600&end=1436738400&_=1434456216844' }, function(error, response, body){
+      res.send(body);
+  });
+});
 
 /// catch 404 and forward to error handler
 // app.use(function(req, res, next) {
