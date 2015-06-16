@@ -11,6 +11,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../components/polymer/polymer.html">
 <link rel="import" href="../../components/iron-ajax/iron-ajax.html">
 
+<dom-module id="a-streets">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <iron-ajax
+    url="/adres"
+    handle-as="json"
+    on-response="handleResponse"
+    debounce-duration="300"
+    id="adres"></iron-ajax>
+  </template>
+</dom-module>
+
 <script>
 (function() {
   Polymer({
@@ -19,7 +35,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     properties: {
       postal: {
         type: String,
+<<<<<<< Updated upstream
         value: null,
+=======
+        value: '',
+>>>>>>> Stashed changes
         notify: true,
         observer: 'postalchanged'
       },
