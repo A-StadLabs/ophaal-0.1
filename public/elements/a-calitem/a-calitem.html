@@ -9,7 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../components/polymer/polymer.html">
-<script src="../../components/momentjs/moment.js"></script>
+
 
 <dom-module id="a-calitem">
   <style>
@@ -27,7 +27,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
+  moment.locale('fr');  // Set the default/global locale
+  // ...
+</script>
+
+<script>
 (function() {
+
+
   Polymer({
     is: 'a-calitem',
 
@@ -60,7 +67,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       hasvalue: function(){
         console.log(this.datum);
-        moment.locale('fr');
+        moment.locale('nl');
         this.newdatum = moment(this.datum).format('dddd D MMMM');
         console.log(this.newdatum);
       }
