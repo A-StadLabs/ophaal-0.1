@@ -1,0 +1,48 @@
+{
+  "name": "mat-paper",
+  "license": "BSD-3-Clause",
+  "version": "0.9.0",
+  "description": "A custom element used to display a Material Design paper",
+  "homepage": "http://expandjs.com/elements/mat-paper",
+  "authors": [
+    "Giuliano Rullo <g.rullo@expandjs.com>",
+    "Maurizio Stefàno <m.stefano@expandjs.com>",
+    "Robert Manolea <r.manolea@expandjs.com>"
+  ],
+  "keywords": [
+    "material design",
+    "material paper",
+    "web app",
+    "html5",
+    "expandjs",
+    "web-components"
+  ],
+  "main": [
+    "mat-paper.html"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "expandjs": "ExpandJS/expandjs",
+    "mat-palette": "ExpandJS/mat-palette",
+    "mat-shadow": "ExpandJS/mat-shadow",
+    "mat-typography": "ExpandJS/mat-typography",
+    "xp-master-state": "ExpandJS/xp-master-state",
+    "xp-slave-state": "ExpandJS/xp-slave-state",
+    "polymer": "Polymer/polymer",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout"
+  },
+  "devDependencies": {
+    "mat-demo": "ExpandJS/mat-demo"
+  },
+  "_release": "0.9.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.9.0",
+    "commit": "233839f9594126c8b7bc2adc4099a999cafde5dc"
+  },
+  "_source": "git://github.com/ExpandJS/mat-paper.git",
+  "_target": "*",
+  "_originalSource": "ExpandJS/mat-paper"
+}

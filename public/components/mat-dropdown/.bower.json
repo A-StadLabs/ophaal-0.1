@@ -1,0 +1,52 @@
+{
+  "name": "mat-dropdown",
+  "license": "BSD-3-Clause",
+  "description": "A custom element used to display a Material Design dropdown",
+  "homepage": "http://expandjs.com/elements/mat-dropdown",
+  "authors": [
+    "Giuliano Rullo <g.rullo@expandjs.com>",
+    "Maurizio Stefàno <m.stefano@expandjs.com>",
+    "Robert Manolea <r.manolea@expandjs.com>"
+  ],
+  "keywords": [
+    "material design",
+    "material dropdown",
+    "input",
+    "web app",
+    "html5",
+    "expandjs",
+    "web-components"
+  ],
+  "main": [
+    "mat-dropdown.html"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "expandjs": "ExpandJS/expandjs",
+    "mat-divider": "ExpandJS/mat-divider",
+    "mat-icon": "ExpandJS/mat-icon",
+    "mat-icons": "ExpandJS/mat-icons",
+    "mat-input-decorator": "ExpandJS/mat-input-decorator",
+    "mat-menu": "ExpandJS/mat-menu",
+    "mat-option": "ExpandJS/mat-option",
+    "xp-input-behavior": "ExpandJS/xp-input-behavior",
+    "xp-referral-behavior": "ExpandJS/xp-referral-behavior",
+    "xp-selected-behavior": "ExpandJS/xp-selected-behavior",
+    "polymer": "Polymer/polymer"
+  },
+  "devDependencies": {
+    "mat-demo": "ExpandJS/mat-demo"
+  },
+  "_release": "519d194969",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "519d194969d71baa25d7110eb3b29d07d7198491"
+  },
+  "_source": "git://github.com/expandjs/mat-dropdown.git",
+  "_target": "master",
+  "_originalSource": "expandjs/mat-dropdown",
+  "_direct": true
+}

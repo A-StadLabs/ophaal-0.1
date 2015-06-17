@@ -1,0 +1,37 @@
+{
+  "name": "xp-anchor-behavior",
+  "license": "BSD-3-Clause",
+  "version": "0.9.0",
+  "description": "A behavior used to add anchor capabilities on the context element",
+  "homepage": "http://expandjs.com/elements/xp-anchor-behavior",
+  "authors": [
+    "Giuliano Rullo <g.rullo@expandjs.com>",
+    "Maurizio Stefàno <m.stefano@expandjs.com>",
+    "Robert Manolea <r.manolea@expandjs.com>"
+  ],
+  "keywords": [
+    "web app",
+    "html5",
+    "expandjs",
+    "web-components"
+  ],
+  "main": [
+    "xp-anchor-behavior.html"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "expandjs": "ExpandJS/expandjs",
+    "polymer": "Polymer/polymer"
+  },
+  "_release": "0.9.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.9.0",
+    "commit": "b8101ed1926d2c313b20d5a3bdbaf4bd65febe65"
+  },
+  "_source": "git://github.com/ExpandJS/xp-anchor-behavior.git",
+  "_target": "*",
+  "_originalSource": "ExpandJS/xp-anchor-behavior"
+}

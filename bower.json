@@ -11,6 +11,6 @@
     "paper-elements": "polymerelements/paper-elements#~1.0.1",
     "polymer": "Polymer/polymer#^1.0.0",
     "lodash": "~3.9.3",
-    "momentjs": "~2.10.3"
+    "momentjs": "~2.10.3",
   }
 }

@@ -15,12 +15,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../components/paper-item/paper-item.html">
 
 <link rel="import" href="../a-streets/a-streets.html">
+<link rel="import" href="../a-calitem/a-calitem.html">
 
 <link rel="import" href="../../components/paper-button/paper-button.html">
 <link rel="import" href="../../components/iron-selector/iron-selector.html">
 
 <link rel="import" href="../../components/iron-ajax/iron-ajax.html">
-
 <script src="../../components/lodash/lodash.js"></script>
 <script src="../../components/momentjs/moment.js"></script>
 
@@ -191,10 +191,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template is="dom-repeat" items="{{kaki}}">
       <div name="{{item.Id}}" on-tap="itemtapped">{{item.Value}}</div>
     </template>
-
   </template>
-
-
 </template>
 </div>
 
@@ -205,9 +202,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <template is="dom-if" if={{Ophaal}}>
   <template is="dom-repeat" items={{Ophaal}}>
-    <p>{{item.fractie}}</p>
-    <p>{{item.start}}</p>
-<!--     <p>{{item.kleur}}</p> -->
+    <a-calitem fractie={{item.fractie}} kleur={{item.kleur}} datum={{item.start}}></a-calitem>
   </template>
 </template>
 
