@@ -21,6 +21,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../components/iron-ajax/iron-ajax.html">
 
+<script src="../../components/lodash/lodash.js"></script>
+<script src="../../components/momentjs/moment.js"></script>
 
 <dom-module id="a-test">
   <style>
@@ -170,13 +172,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.$.ophaalkal.generateRequest();
     },
 
+
+
     handleResponse: function(e){
       //console.log(e.detail.response);
       var Things = e.detail.response;
       Things.reverse();
-      for (var i = Things.length - 1; i >= 0; i--) {
-        console.log(Things[i]);
-      };
+      var thing = Things[0];
+      //var hallo = _.filter(Things, function(thing){
+        //console.log(thing.start);
+        var startdate = new Date(thing.start);
+        var tom = moment(startdate).startOf('week');
+        console.log(tom, ' // ', startdate);
+
+      //});
+      //console.log(Things);
+      
 
     }
   });
