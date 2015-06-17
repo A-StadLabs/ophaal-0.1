@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../components/polymer/polymer.html">
+<script src="../../components/momentjs/moment.js"></script>
 
 <dom-module id="a-calitem">
   <style>
@@ -18,7 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
      <p>{{fractie}}</p>
-    <p>{{datum}}</p>
+    <p>{{newdatum}}</p>
     <p>{{kleur}}</p>
   </template>
 </dom-module>
@@ -32,7 +33,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       datum: {
         type: String,
         value: '',
-        notify: true
+        notify: true,
+        observer: 'hasvalue'
       },
 
       fractie: {
@@ -52,6 +54,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       ready: function(){
         //console.log('i has streets loaded');
+      },
+
+      hasvalue: function(){
+        console.log(this.datum);
+        this.newdatum = moment(this.datum).format('dddd D MMMM');
+        console.log(this.newdatum);
       }
 
      
