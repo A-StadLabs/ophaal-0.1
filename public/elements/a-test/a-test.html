@@ -29,9 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     :host {
       display: block;
       width: 100%;
-      background-color: #D9F299;
-      margin: 0px;
-      padding: 20px 0px 50px 50px;
+
       font-family: 'Open Sans', sans-serif;
 
       @apply(--layout-vertical);
@@ -100,6 +98,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       background-color: white;
     }
 
+    .greenbg {
+      background-color: #D9F299;
+      width: 100%;
+      margin: 0px;
+      padding: 20px 0px 50px 50px;
+    }
+
+    .whitebg {
+      background-color: white;
+      width: 100%;
+      margin: 0px;
+      padding: 20px 0px 50px 50px;
+    }
+
+
   </style>
   <template>
 
@@ -113,6 +126,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <div id="geoloc">
     <button>Gebruik mijn huidige locatie!</button>
   </div> -->
+  <div class="greenbg">
   <div id="regloc">
     <h3>Geef een adres op</h3>
 
@@ -145,16 +159,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </iron-selector>
 
 </template>
+</div>
 
 <!-- <span>{{Ophaal}} ???!!!</span> -->
+  <div class="whitebg">
 
 <template is="dom-if" if={{Ophaal}}>
   <template is="dom-repeat" items={{Ophaal}}>
     <p>{{item.fractie}}</p>
     <p>{{item.start}}</p>
-    <p>{{item.kleur}}</p>
+<!--     <p>{{item.kleur}}</p> -->
   </template>
 </template>
+
+</div>
+
+
+
+
 
 </template>
 </dom-module>
