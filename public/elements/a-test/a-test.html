@@ -28,12 +28,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
     :host {
       display: block;
-      width: 100%;
-      background-color: #D9F299;
-      margin: 0px;
-      padding: 20px 0px 50px 50px;
+/*      width: 100%;
+*/
       font-family: 'Open Sans', sans-serif;
-
       @apply(--layout-vertical);
       @apply(--layout-start);
     }
@@ -42,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin: 30px 0px 10px 0px;
       padding: 0px;
       font-weight: 300;
-      font-size: 22px;
+      font-size: 20px;
     }
 
 
@@ -50,8 +47,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin: 0px;
       padding: 0px;
       font-weight: 300;
-      font-size: 16px;
+      font-size: 14px;
 
+    }
+
+
+    h1 {
+      margin: 0px;
+      padding: 0px;
+      font-weight: 300;
+      font-size: 26px;
     }
 
 
@@ -75,7 +80,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
     #regloc {
-      margin-top: 20px;
+      margin-top: 10px;
       width: 60%;
     }
 
@@ -100,6 +105,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       background-color: white;
     }
 
+    .greenbg {
+      background-color: #D9F299;
+      width: 100%;
+      margin: 0px;
+          box-sizing: border-box;
+
+      padding: 50px 0px 50px 50px;
+    }
+
+    .whitebg {
+      background-color: white;
+      width: 100%;
+      margin: 0px;
+      box-sizing: border-box;
+      padding: 20px 0px 50px 50px;
+    }
+
+    .intro {
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+
+    }
+
+    .intro img {
+      margin: 0px 20px 0px 0px;
+    }
+
+    .vertical {
+      @apply(--layout-vertical);
+    }
+
   </style>
   <template>
 
@@ -113,6 +149,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <div id="geoloc">
     <button>Gebruik mijn huidige locatie!</button>
   </div> -->
+  <div class="greenbg">
+
+    <div class="intro">
+       <img src="../../images/a_zwart-rgb.svg">
+
+      <h1>OPHAALKALENDER</h1>
+<!--       <p>AstadLabs Prototype</p> -->
+
+
+    </div>
+
   <div id="regloc">
     <h3>Geef een adres op</h3>
 
@@ -137,19 +184,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template is="dom-repeat" items="{{kaki}}">
       <div name="{{item.Id}}" on-tap="itemtapped">{{item.Value}}</div>
     </template>
+<<<<<<< HEAD
 </template>
   
+=======
+  </template>
+
+
+</iron-selector>
+>>>>>>> origin/master
 
 </template>
+</div>
 
+<<<<<<< HEAD
+=======
+<!-- <span>{{Ophaal}} ???!!!</span> -->
+  <div class="whitebg">
+>>>>>>> origin/master
 
 <template is="dom-if" if={{Ophaal}}>
   <template is="dom-repeat" items={{Ophaal}}>
     <p>{{item.fractie}}</p>
     <p>{{item.start}}</p>
-    <p>{{item.kleur}}</p>
+<!--     <p>{{item.kleur}}</p> -->
   </template>
 </template>
+
+</div>
+
+
+
+
 
 </template>
 </dom-module>
