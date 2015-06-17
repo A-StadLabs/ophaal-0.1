@@ -37,6 +37,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
      <p>{{fractie}}</p>
     <p>{{kleur}}</p>
+     <img src="{{svgsource}}" />
+<!--     <p>{{kleur}}</p> -->
 <!--     <p>{{kleur}}</p> -->
   </template>
 </dom-module>
@@ -86,16 +88,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       kleurnaarsvg: function(){
         switch(this.kleur){
           case 'green':
-            this.svgsource = 'icons_ophaal-GFT.svg';
+            this.svgsource = 'images/icons_ophaal-GFT.svg';
             break;
-          case 'gray':
-            this.svgsource = 'icons_ophaal-REST.svg';
+          case 'grey':
+            this.svgsource = 'images/icons_ophaal-REST.svg';
             break;
           case 'brown':
-            this.svgsource = 'icons_ophaal-PAPKAR.svg';
+            this.svgsource = 'images/icons_ophaal-PAPKAR.svg';
             break;
           case 'blue':
-            this.svgsource = 'icons_ophaal-PMD.svg';
+            this.svgsource = 'images/icons_ophaal-PMD.svg';
             break;
         };
       }
