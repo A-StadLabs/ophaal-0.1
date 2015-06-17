@@ -135,9 +135,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <template is="dom-if" if="{{street}}">
   <iron-selector attr-for-selected="name" selected={{straatselect}}>
 
-  <template is="dom-repeat" items="{{kaki}}">
+  <template is="dom-if" if={{!chosen}}>
+    <template is="dom-repeat" items="{{kaki}}">
       <div name="{{item.Id}}">{{item.Value}}</div>
+    </template>
   </template>
+
 </iron-selector>
 
 </template>
@@ -175,12 +178,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     ready: function(){
-            
-
+      this.chosen = false;
     },
 
-    selectHandler: function(){
+    selectHandler: function(e, detail, sender){
       console.log(this.straatselect);
+      console.log('chosen: ', e, detail, sender);
+
+      this.chosen = true;
       this.$.ophaalkal.url = '/rides?streetId='+this.straatselect;
       this.$.ophaalkal.generateRequest();
     },
