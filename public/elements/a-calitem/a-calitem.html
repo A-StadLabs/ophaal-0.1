@@ -60,6 +60,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       hasvalue: function(){
         console.log(this.datum);
+        moment.locale('fr');
         this.newdatum = moment(this.datum).format('dddd D MMMM');
         console.log(this.newdatum);
       }
