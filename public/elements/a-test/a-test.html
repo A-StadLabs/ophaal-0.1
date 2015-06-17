@@ -133,19 +133,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <a-streets postal={{postal}} street={{street}} streets={{kaki}}></a-streets>
 
 <template is="dom-if" if="{{street}}">
-  <iron-selector attr-for-selected="name" selected={{straatselect}}>
-
-  <template is="dom-if" if={{!chosen}}>
+<template is="dom-if" if="{{chosen}}">
     <template is="dom-repeat" items="{{kaki}}">
-      <div name="{{item.Id}}">{{item.Value}}</div>
+      <div name="{{item.Id}}" on-tap="itemtapped">{{item.Value}}</div>
     </template>
-  </template>
-
-</iron-selector>
+</template>
+  
 
 </template>
 
-<span>{{Ophaal}}</span>
 
 <template is="dom-if" if={{Ophaal}}>
   <template is="dom-repeat" items={{Ophaal}}>
@@ -172,20 +168,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       straatselect: {
         type: String,
         value: 'bar',
-        notify: true,
-        observer: 'selectHandler'
+        notify: true
       }
     },
 
+  
+
     ready: function(){
-      this.chosen = false;
+      this.chosen = true;
     },
 
-    selectHandler: function(e, detail, sender){
-      console.log(this.straatselect);
-      console.log('chosen: ', e, detail, sender);
+  
 
-      this.chosen = true;
+    itemtapped: function(e, detail, sender){
+      console.log(e.srcElement.name);
+      this.street = e.srcElement.innerHTML;
+      this.straatselect = e.srcElement.name;
+      this.chosen = false;
       this.$.ophaalkal.url = '/rides?streetId='+this.straatselect;
       this.$.ophaalkal.generateRequest();
     },
