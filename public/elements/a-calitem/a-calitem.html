@@ -27,11 +27,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 
 <script>
-  moment.locale('fr');  // Set the default/global locale
-  // ...
-</script>
-
-<script>
 (function() {
 
 
@@ -55,7 +50,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       kleur: {
         type: String,
         value: null,
-        notify: true
+        notify: true,
+        observer: 'kleurnaarsvg'
       }
 
     },
@@ -70,6 +66,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         moment.locale('nl');
         this.newdatum = moment(this.datum).format('dddd D MMMM');
         console.log(this.newdatum);
+      },
+
+      kleurnaarsvg: function(){
+        switch(this.kleur){
+          case 'green':
+            this.svgsource = 'icons_ophaal-GFT.svg';
+            break;
+          case 'gray':
+            this.svgsource = 'icons_ophaal-REST.svg';
+            break;
+          case 'brown':
+            this.svgsource = 'icons_ophaal-PAPKAR.svg';
+            break;
+          case 'blue':
+            this.svgsource = 'icons_ophaal-PMD.svg';
+            break;
+        };
       }
 
      
