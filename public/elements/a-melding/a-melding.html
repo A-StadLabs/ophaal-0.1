@@ -17,7 +17,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../components/firebase-element/firebase.html">
 <link rel="import" href="../../components/firebase-element/firebase-collection.html">
 
+<link rel="import" href="../a-intro/a-intro.html">
+<link rel="import" href="../theme-style.html">
 
+<link rel="import" href="../../components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../components/paper-button/paper-button.html">
 <link rel="import" href="../../components/iron-selector/iron-selector.html">
 
@@ -40,28 +43,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="a-melding">
   <style>
-    :host {
-      display: block;
-/*      width: 100%;
-*/
-      font-family: 'Open Sans', sans-serif;
+ :host {
+      @apply(--theme-main-font);
       @apply(--layout-vertical);
       @apply(--layout-start);
 
     }
 
-    h3 {
+    h1,h2,h3,h4 {
+      @apply(--theme-title-fonts);
       margin: 0px;
       padding: 0px;
-      font-weight: 300;
+    }
+
+
+    h3 {
       font-size: 20px;
     }
 
 
     h4 {
-      margin: 0px 0px 0px 0px;
+      margin: 0px;
       padding: 0px;
-      font-weight: 300;
       font-size: 14px;
       color: #cccccc;
 
@@ -69,25 +72,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
     h1 {
-      margin: 0px;
-      padding: 0px;
-      font-weight: 300;
       font-size: 26px;
     }
 
 
 
-    paper-button {
-      border-radius: 0px;
-      outline: 0;
-      border-style:solid;
-      -webkit-appearance: none;
+    button {
+      @apply(--theme-buttons);
+
     }
 
 
     paper-input-container{
-      --paper-input-container-color: #A1B56E;
+/*      @apply(--theme2-colors);*/
       --paper-input-container-focus-color:black;
+      background-color: white;
+      border-radius: 4px;
+
 
     }
 
@@ -95,9 +96,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
     #regloc {
-      margin-top: 10px;
       width: 80%;
-      max-width: 600px;
+            @apply(--layout-vertical);
+      @apply(--layout-start);
     }
 
     #geoloc {
@@ -106,29 +107,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
 
-    .btnz {
-      margin: 0px;
-      padding: 0px;
-      border: none;
-    }
-
-    .streetz {
-      border-bottom: 1px solid #A1B56E;
-      margin: 0px;
-      padding: 10px 0px 10px 0px; 
-      width: 60%;
-      background-color: white;
-    }
-
-    .greenbg {
-      background-color: #D9F299;
+    .partI {
+      background-color: var(--theme2-main-color);
       width: 100%;
       margin: 0px;
       box-sizing: border-box;
       padding: 50px 0px 50px 50px;
+      @apply(--layout-vertical);
+      @apply(--layout-start);
     }
 
-    .whitebg {
+    .partII {
       background-color: white;
       width: 100%;
       margin: 0px;
@@ -136,23 +125,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       padding: 30px 50px 50px 50px;
     }
 
-    .intro {
-      @apply(--layout-horizontal);
-      @apply(--layout-center);
-      margin: 0px 0px 40px 0px;
-
-    }
-
-    .intro img {
-      width: 80px;
-      margin: 0px 15px 0px 0px;
-    }
-
-    .intro small {
-      font-weight: 800;
-      font-size: 11px;
-      margin-top: 2px;
-    }
 
 
     .vertical {
@@ -175,6 +147,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-right: 10px;
     }
 
+
+
+
   </style>
   <template>
 
@@ -184,7 +159,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     debounce-duration="300"
     id="ophaalkal"></iron-ajax>
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+  <div class="partI">
+      <div class="regloc">
+
+      <a-intro></a-intro>
+      
+      <template is="dom-if" if="{{!locationpos}}">
+        <small>Dus hier moet een button komen met een beetje uitleg; als u hier klikt gaat uw telefoon vragen of hij uw locatie mag doorgeven, geef toestemming om verder te gaan. </small>
+        <button on-tap="getLocation">Geef mijn locatie door</button>
+      </template>
+  </div>
+=======
+<iron-localstorage name="ophaal-bendillen" value="{{palue}}" on-iron-localstorage-load-empty="initializeDefault"></iron-localstorage>
+>>>>>>> origin/master
 <!-- 
   <div id="geoloc">
     <button>Gebruik mijn huidige locatie!</button>
@@ -207,15 +199,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <p>Dus hier moet een button komen met een beetje uitleg; als u hier klikt gaat uw telefoon vragen of hij uw locatie mag doorgeven, geef toestemming om verder te gaan. </p>
   <paper-button on-tap="getLocation">Geef mijn locatie door</paper-button>
   </template>
+>>>>>>> origin/master
 
   <template is="dom-if" if="{{locationpos}}">
     <file-upload id="imageupload" imgval="{{imageval}}"></file-upload>
+<<<<<<< HEAD
     <paper-input-container>
+=======
+    <p>{{imageval}}</p>
+>>>>>>> origin/master
   <label>Opmerkingen?</label>
-  <input is="iron-input" maxlength="144" prevent-invalid-input bind-value="{{comment}}">
-  <paper-input-char-counter></paper-input-char-counter>
-</paper-input-container>
-    <paper-button on-tap="saveIt">Versturen</paper-button>
+  <input is="iron-input" bind-value="{{comment}}">
+    <button on-tap="saveIt">Versturen</button>
   </template>
 
   </div>
