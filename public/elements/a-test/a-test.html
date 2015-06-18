@@ -47,10 +47,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
     h4 {
-      margin: 0px;
+      margin: 0px 0px 0px 0px;
       padding: 0px;
       font-weight: 300;
       font-size: 14px;
+      color: #cccccc;
 
     }
 
@@ -97,7 +98,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin: 0px;
       padding: 0px;
       border: none;
-      background-color: 
     }
 
     .streetz {
@@ -121,7 +121,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 100%;
       margin: 0px;
       box-sizing: border-box;
-      padding: 40px 50px 50px 50px;
+      padding: 30px 50px 50px 50px;
     }
 
     .intro {
@@ -151,12 +151,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       @apply(--layout-horizontal);
     }
 
-    a-calitem {
-      margin-right: 10px;
-      --ophaalfractie-color: red;
-
+    .wrap {
+      @apply(--layout-wrap);
     }
 
+    a-calitem {
+      width: auto;
+    }
+
+    a-fractie {
+      margin-right: 10px;
+    }
 
   </style>
   <template>
@@ -216,22 +221,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 <template is="dom-if" if={{Ophaal}}>
-      <h3>Volgende ophaling gebeurt op <span>{{item.datum}}</span></h3>
 
-<span>{{item.start}}</span>
-<div class="horizontal">
-
-
-
-
+      <h4>Volgende ophaling <span>{{item.datum}}</span></h4>
 
   <template is="dom-repeat" items={{Ophaal}}>
      <a-calitem datum={{item.start}}></a-calitem>
+       <div class="horizontal wrap">
     <template is="dom-repeat" as="event" items="{{item.events}}">
-      <a-fractie kleur="{{event.kleur}}" titel="{{event.title}}"></a-fractie>
+      <a-fractie kleur="{{event.color}}" titel="{{event.title}}"></a-fractie>
     </template>
+        </div>
+
   </template>
-    </div>
 
 </template>
 
@@ -306,6 +307,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       };
 
       console.log(ophaal);
+            console.log(Things);
+
       this.Ophaal = ophaal;
     }
 

@@ -15,16 +15,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
     :host {
       display: block;
-      border-bottom: 1px solid #EBEBEB;
-      margin: 5px 0px 5px 0px;
+      border: 1px solid #EBEBEB;
+      border-radius: 5px;
+      margin: 10px 10px 0px 0px;
       box-sizing: border-box;
-      padding: 10px;
+      padding: 10px 20px 10px 10px;
+      @apply(--layout-horizontal);
+      @apply(--layout-center);      
     }
 
     p {
       margin: 0px;
       padding: 0px;
       font-size: 14px;
+      color: var(--ophaal-color);
+    }
+
+    img {
+      width: 30px;
+      margin: 0px 15px 0px 0px;
     }
 
 
@@ -33,8 +42,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     
    
-    <p>{{kleur}}</p>
+<!--     <p>{{kleur}}</p> -->
+   <img src="{{svgsource}}" />
     <p>{{titel}}</p>
+  <!--   <img src="{{svgsource}}"> -->
+
 
   </template>
 </dom-module>
@@ -51,7 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: String,
         value: '',
         notify: true,
-        observer: 'hasvalue'
+        observer: 'kleurnaarsvg'
       },
 
       titel: {
@@ -65,32 +77,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       ready: function(){
         //console.log('i has streets loaded');
+
+
+                this.customStyle['--ophaal-color'] = 'pink';
+        this.updateStyles();
       },
 
       hasvalue: function(){
         
-      }
+      },
       //,
 
-      // kleurnaarsvg: function(){
-      //   switch(this.kleur){
-      //     case 'green':
-      //       this.svgsource = 'images/icons_ophaal-GFT.svg';
-      //       break;
-      //     case 'grey':
-      //       this.svgsource = 'images/icons_ophaal-REST.svg';
-      //       break;
-      //     case 'brown':
-      //       this.svgsource = 'images/icons_ophaal-PAPKAR.svg';
-      //       break;
-      //     case 'blue':
-      //       this.svgsource = 'images/icons_ophaal-PMD.svg';
-      //       break;
-      //     case 'yellow':
-      //       this.svgsource = 'images/icons_ophaal-GLAS.svg';
-      //       break;
-      //   };
-      // }
+      kleurnaarsvg: function(){
+        switch(this.kleur){
+          case 'green':
+            this.svgsource = '../../images/icons_ophaal-GFT.svg';
+
+
+
+            break;
+          case 'grey':
+            this.svgsource = 'images/icons_ophaal-REST.svg';
+            break;
+          case 'brown':
+            this.svgsource = 'images/icons_ophaal-PAPKAR.svg';
+            break;
+          case 'blue':
+            this.svgsource = 'images/icons_ophaal-PMD.svg';
+            break;
+          case 'yellow':
+            this.svgsource = 'images/icons_ophaal-GLAS.svg';
+            break;
+        };
+      }
 
      
 

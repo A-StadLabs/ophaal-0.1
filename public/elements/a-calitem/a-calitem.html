@@ -9,7 +9,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../components/polymer/polymer.html">
-
 <link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
 
 
@@ -18,28 +17,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
     :host {
       display: block;
-      border: 1px solid #EBEBEB;
-      border-radius: 5px;
-      margin: 5px 0px 5px 0px;
-      box-sizing: border-box;
-      padding: 10px 20px 10px 10px;
-      @apply(--layout-horizontal);
-      @apply(--layout-start);
-      @apply(--layout-center);
+      margin: 30px 0px 0px 0px;
+
     }
 
-    p {
-      margin: 0px;
+    h2 {
+      margin: 0px 0px 0px 0px;
       padding: 0px;
-      font-size: 14px;
-      color: var(--ophaalfractie-color);
-
-
+      font-size: 20px;
+      font-weight: 300;
+      text-transform: capitalize;
     }
 
     img {
       width: 35px;
-      margin-right: 10px;
+      margin-right: 6px;
     }
 
 
@@ -48,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     
 
-     <p>{{newdatum}}</p>
+     <h2>{{newdatum}}</h2>
 
 
 <!--      <p>{{newdatum}}</p>
@@ -80,8 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       ready: function(){
         //console.log('i has streets loaded');
-        // this.customStyle['--ophaalfractie-color'] = 'pink';
-        // this.updateStyles();
+
       },
 
       hasvalue: function(){
