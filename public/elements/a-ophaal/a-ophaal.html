@@ -10,13 +10,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../components/polymer/polymer.html">
 <link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800">
 <link rel="import" href="../../components/paper-input/paper-input.html">
 <link rel="import" href="../../components/paper-item/paper-item.html">
 
 <link rel="import" href="../a-streets/a-streets.html">
 <link rel="import" href="../a-calitem/a-calitem.html">
 <link rel="import" href="../a-fractie/a-fractie.html">
+<link rel="import" href="../a-intro/a-intro.html">
+<link rel="import" href="../theme-style.html">
+
 
 <link rel="import" href="../../components/paper-button/paper-button.html">
 <link rel="import" href="../../components/iron-selector/iron-selector.html">
@@ -29,27 +31,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="a-ophaal">
   <style>
     :host {
-      display: block;
-/*      width: 100%;
-*/
-      font-family: 'Open Sans', sans-serif;
+      @apply(--theme-main-font);
       @apply(--layout-vertical);
       @apply(--layout-start);
 
     }
 
-    h3 {
+    h1,h2,h3,h4 {
+      @apply(--theme-title-fonts);
       margin: 0px;
       padding: 0px;
-      font-weight: 300;
+    }
+
+
+    h3 {
       font-size: 20px;
     }
 
 
     h4 {
-      margin: 0px 0px 0px 0px;
+      margin: 0px;
       padding: 0px;
-      font-weight: 300;
       font-size: 14px;
       color: #cccccc;
 
@@ -57,24 +59,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
     h1 {
-      margin: 0px;
-      padding: 0px;
-      font-weight: 300;
       font-size: 26px;
     }
 
 
 
     paper-button {
-      border-radius: 0px;
-      outline: 0;
-      border-style:solid;
-      -webkit-appearance: none;
+      @apply(--theme-neutral);
     }
 
 
     paper-input-container{
-      --paper-input-container-color: #A1B56E;
+      @apply(--theme-colors);
       --paper-input-container-focus-color:black;
 
     }
@@ -94,29 +90,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
 
-    .btnz {
-      margin: 0px;
-      padding: 0px;
-      border: none;
-    }
-
-    .streetz {
-      border-bottom: 1px solid #A1B56E;
-      margin: 0px;
-      padding: 10px 0px 10px 0px; 
-      width: 60%;
-      background-color: white;
-    }
-
-    .greenbg {
-      background-color: #D9F299;
+    .partI {
+      background-color: var(--theme-main-color);
       width: 100%;
       margin: 0px;
       box-sizing: border-box;
       padding: 50px 0px 50px 50px;
     }
 
-    .whitebg {
+    .partII {
       background-color: white;
       width: 100%;
       margin: 0px;
@@ -124,23 +106,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       padding: 30px 50px 50px 50px;
     }
 
-    .intro {
-      @apply(--layout-horizontal);
-      @apply(--layout-center);
-      margin: 0px 0px 40px 0px;
-
-    }
-
-    .intro img {
-      width: 80px;
-      margin: 0px 15px 0px 0px;
-    }
-
-    .intro small {
-      font-weight: 800;
-      font-size: 11px;
-      margin-top: 2px;
-    }
 
 
     .vertical {
@@ -163,6 +128,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-right: 10px;
     }
 
+
+
+
   </style>
   <template>
 
@@ -176,20 +144,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <div id="geoloc">
     <button>Gebruik mijn huidige locatie!</button>
   </div> -->
-  <div class="greenbg">
-
-    <div class="intro">
-       <img src="../../images/a_zwart-rgb.svg">
-
-      <div class="vertical">
-      <small>AstadLabs Prototype</small>
-      <h1>OPHAALKALENDER</h1>
-    </div>
-    </div>
+  <div class="partI">
+     <a-intro></a-intro>
 
   <div id="regloc">
     <h3>Geef een adres op</h3>
-
 <paper-input-container>
   <label>Postcode</label>
   <input is="iron-input" maxlength="4" prevent-invalid-input allowed-pattern="[0-9]"  bind-value="{{postal}}">
@@ -217,7 +176,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 <!-- <span>{{Ophaal}} ???!!!</span> -->
-  <div class="whitebg">
+  <div class="partII">
 
 
 <template is="dom-if" if={{Ophaal}}>
