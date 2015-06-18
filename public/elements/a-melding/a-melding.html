@@ -156,6 +156,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     debounce-duration="300"
     id="ophaalkal"></iron-ajax>
 
+<<<<<<< HEAD
+
+  <div class="partI">
+      <div class="regloc">
+
+      <a-intro></a-intro>
+      
+      <template is="dom-if" if="{{!locationpos}}">
+        <small>Dus hier moet een button komen met een beetje uitleg; als u hier klikt gaat uw telefoon vragen of hij uw locatie mag doorgeven, geef toestemming om verder te gaan. </small>
+        <button on-tap="getLocation">Geef mijn locatie door</button>
+      </template>
+  </div>
+=======
 <iron-localstorage name="ophaal-bendillen" value="{{palue}}" on-iron-localstorage-load-empty="initializeDefault"></iron-localstorage>
 <!-- 
   <div id="geoloc">
@@ -179,6 +192,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <p>Dus hier moet een button komen met een beetje uitleg; als u hier klikt gaat uw telefoon vragen of hij uw locatie mag doorgeven, geef toestemming om verder te gaan. </p>
   <paper-button on-tap="getLocation">Geef mijn locatie door</paper-button>
   </template>
+>>>>>>> origin/master
 
   <template is="dom-if" if="{{locationpos}}">
     <file-upload id="imageupload" imgval="{{imageval}}"></file-upload>
