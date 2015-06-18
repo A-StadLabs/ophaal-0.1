@@ -205,9 +205,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 <template is="dom-if" if={{Ophaal}}>
-      <h3>Volgende ophalingen</h3>
+      <h3>Volgende ophaling gebeurt op <span>{{item.start}}</span></h3>
 
   <template is="dom-repeat" items={{Ophaal}}>
+
+
     <a-calitem fractie={{item.fractie}} kleur={{item.kleur}} datum={{item.start}}></a-calitem>
   </template>
 </template>
