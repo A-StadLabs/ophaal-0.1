@@ -16,6 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../a-streets/a-streets.html">
 <link rel="import" href="../a-calitem/a-calitem.html">
+<link rel="import" href="../a-fractie/a-fractie.html">
 
 <link rel="import" href="../../components/paper-button/paper-button.html">
 <link rel="import" href="../../components/iron-selector/iron-selector.html">
@@ -205,12 +206,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 <template is="dom-if" if={{Ophaal}}>
-      <h3>Volgende ophaling gebeurt op <span>{{item.start}}</span></h3>
+      <h3>Volgende ophaling gebeurt op <span>{{item.datum}}</span></h3>
 
   <template is="dom-repeat" items={{Ophaal}}>
-    <p>{{item.start}}</p>
-    <template is="dom-repeat" as="event" items={{item.events}} >
-      <p>{{event.title}}</p>
+     <a-calitem datum={{item.start}}></a-calitem>
+    <template is="dom-repeat" as="event" items="{{item.events}}">
+      <a-fractie kleur="{{event.kleur}}" titel="{{event.title}}"></a-fractie>>
     </template>
   </template>
 </template>
