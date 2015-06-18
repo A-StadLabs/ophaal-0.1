@@ -208,9 +208,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h3>Volgende ophaling gebeurt op <span>{{item.start}}</span></h3>
 
   <template is="dom-repeat" items={{Ophaal}}>
-
-
-    <a-calitem fractie={{item.fractie}} kleur={{item.kleur}} datum={{item.start}}></a-calitem>
+    <p>{{item.start}}</p>
+    <template is="dom-repeat" as="event" items={{item.events}} >
+      <p>{{event.title}}</p>
+    </template>
   </template>
 </template>
 
@@ -261,40 +262,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
     handleResponse: function(e){
-      //console.log(e.detail.response);
+
       var Things = e.detail.response;
       Things.reverse();
 
       ophaal = [];
-      //this.Things = Things;
-      //var thing = Things[0];
-      //var hallo = _.filter(Things, function(thing){
-        //console.log(thing.start);
-        var today = new moment();
-        var future = new moment().add(7, 'd');
 
-        for (var i = Things.length - 1; i >= 0; i--) {
-          var startdate = new Date(Things[i].start);
+      var today = new moment();
+      var future = new moment().add(7, 'd');
+
+      //console.log(JSON.stringify(Things));
+
+      var Things = _.chain(Things).groupBy('start').map(function (group, key) { 
+        return { 'datum': key, 'events': group };
+      }).value();
+
+      for (var i = Things.length - 1; i >= 0; i--) {
+        var startdate = new Date(Things[i].datum);
           if(startdate>today&&startdate<future){
-            console.log(Things[i].start);
-            ophaal.push({"id": i, "start": Things[i].start, "fractie": Things[i].title, "kleur": Things[i].color });
+            console.log(Things[i].datum);
+            ophaal.push({"id": i, "start": Things[i].datum, "events": Things[i].events });
           };
-        }; 
+      };
 
-        console.log(JSON.stringify(ophaal));
-
-        this.Ophaal = ophaal;
-
-        
-        //var tom = moment(startdate).startOf('week');
-        
-        //onsole.log(tom, ' // ', startdate, ' // ');
-        
-      //});
-      //console.log(Things);
-      
-
+      console.log(ophaal);
+      this.Ophaal = ophaal;
     }
+
   });
 })();
 </script>
