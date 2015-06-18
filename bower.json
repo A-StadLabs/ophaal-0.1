@@ -12,5 +12,7 @@
     "polymer": "Polymer/polymer#^1.0.0",
     "lodash": "~3.9.3",
     "momentjs": "~2.10.3",
+    "firebase-element": "GoogleWebComponents/firebase-element#^1.0.0"
+
   }
 }
