@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../components/polymer/polymer.html">
 <link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../components/google-map/google-map.html">
 
 
 
@@ -41,7 +42,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
 
      <h2>{{newdatum}}</h2>
-     <img src=""
+     <img src="{{image}}" />
+     <p>{{comment}}</p>
+     <google-map zoom="17" longitude="{{longitude}}" latitude="{{latitude}}"></google-map>
 
 <!--      <p>{{newdatum}}</p>
  -->
