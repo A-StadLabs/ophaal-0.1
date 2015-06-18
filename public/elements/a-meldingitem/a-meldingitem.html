@@ -46,7 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
    
   <template is="dom-if" if={{resolve}}>
-     <h2>{{newdatum}}</h2>
+     <h2>{{datum}}</h2>
      <img src="{{image}}" />
      <p>{{comment}}</p>
      <google-map zoom="17" longitude="{{longitude}}" latitude="{{latitude}}" >
@@ -93,14 +93,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           that.latitude = snap.val().lat;
           console.log(that.latitude, snap.val().lat);
           that.image = snap.val().image;
-          that.datum = snap.val().tijd;
+          moment.locale('nl');
+          that.datum = moment(snap.val().tijd).format('dddd D MMMM, HH:mm');
           that.resolve = true;
         });
 
-        // datum mooi zetten 
-        moment.locale('nl');
-        this.newdatum = moment(this.datum).format('dddd D MMMM, HH:mm');
-        console.log(this.newdatum);
+        
       }
      
 
