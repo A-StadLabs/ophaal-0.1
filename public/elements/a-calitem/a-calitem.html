@@ -9,11 +9,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../components/polymer/polymer.html">
-<<<<<<< HEAD
-<link rel="import" href="../a-fractie/a-fractie.html">
-=======
+
 <link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
->>>>>>> origin/master
+
 
 
 <dom-module id="a-calitem">
@@ -49,17 +47,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
     
-<<<<<<< HEAD
+
      <p>{{newdatum}}</p>
 
 
-=======
 <!--      <p>{{newdatum}}</p>
  -->
-     <img src="{{svgsource}}" />
-     <p>{{fractie}}</p>
+     
 <!--     <p>{{kleur}}</p> -->
->>>>>>> origin/master
   </template>
 </dom-module>
 
@@ -78,11 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         observer: 'hasvalue'
       }
 
-<<<<<<< HEAD
-     
-=======
 
->>>>>>> origin/master
 
     },
 
@@ -98,30 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         moment.locale('nl');
         this.newdatum = moment(this.datum).format('dddd D MMMM');
         //console.log(this.newdatum);
-      },
-
-      kleurnaarsvg: function(){
-        switch(this.kleur){
-          case 'green':
-            this.svgsource = 'images/icons_ophaal-GFT.svg';
-
-            break;
-          case 'grey':
-            this.svgsource = 'images/icons_ophaal-REST.svg';
-
-            break;
-          case 'brown':
-            this.svgsource = 'images/icons_ophaal-PAPKAR.svg';
-            break;
-          case 'blue':
-            this.svgsource = 'images/icons_ophaal-PMD.svg';
-            break;
-          case 'yellow':
-            this.svgsource = 'images/icons_ophaal-GLAS.svg';
-            break;
-        };
       }
-
      
 
     
