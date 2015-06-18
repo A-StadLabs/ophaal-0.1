@@ -34,6 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       font-family: 'Open Sans', sans-serif;
       @apply(--layout-vertical);
       @apply(--layout-start);
+
     }
 
     h3 {
@@ -145,6 +146,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       @apply(--layout-vertical);
     }
 
+    .horizontal {
+      @apply(--layout-horizontal);
+    }
+
+    a-calitem {
+      margin-right: 10px;
+      --ophaalfractie-color: red;
+
+    }
 
 
   </style>
@@ -205,13 +215,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 <template is="dom-if" if={{Ophaal}}>
-      <h3>Volgende ophaling gebeurt op <span>{{item.start}}</span></h3>
+      <h3>Volgende ophaling gebeurt op </h3>
+
+<span>{{item.start}}</span>
+<div class="horizontal">
+
 
   <template is="dom-repeat" items={{Ophaal}}>
-
-
     <a-calitem fractie={{item.fractie}} kleur={{item.kleur}} datum={{item.start}}></a-calitem>
   </template>
+    </div>
+
 </template>
 
 </div>

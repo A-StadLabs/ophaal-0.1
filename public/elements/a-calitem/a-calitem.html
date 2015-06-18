@@ -9,22 +9,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
 
 
 <dom-module id="a-calitem">
   <style>
     :host {
       display: block;
-      border-bottom: 1px solid #EBEBEB;
+      border: 1px solid #EBEBEB;
+      border-radius: 5px;
       margin: 5px 0px 5px 0px;
       box-sizing: border-box;
-      padding: 10px;
+      padding: 10px 20px 10px 10px;
+      @apply(--layout-horizontal);
+      @apply(--layout-start);
+      @apply(--layout-center);
     }
 
     p {
       margin: 0px;
       padding: 0px;
       font-size: 14px;
+      color: var(--ophaalfractie-color);
+
+
+    }
+
+    img {
+      width: 35px;
+      margin-right: 10px;
     }
 
 
@@ -32,13 +45,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
   <template>
     
-     <p>{{newdatum}}</p>
-
-
-     <p>{{fractie}}</p>
-    <p>{{kleur}}</p>
+<!--      <p>{{newdatum}}</p>
+ -->
      <img src="{{svgsource}}" />
-<!--     <p>{{kleur}}</p> -->
+     <p>{{fractie}}</p>
 <!--     <p>{{kleur}}</p> -->
   </template>
 </dom-module>
@@ -71,11 +81,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         observer: 'kleurnaarsvg'
       }
 
+
+
     },
 
 
       ready: function(){
         //console.log('i has streets loaded');
+        // this.customStyle['--ophaalfractie-color'] = 'pink';
+        // this.updateStyles();
       },
 
       hasvalue: function(){
@@ -89,9 +103,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         switch(this.kleur){
           case 'green':
             this.svgsource = 'images/icons_ophaal-GFT.svg';
+
             break;
           case 'grey':
             this.svgsource = 'images/icons_ophaal-REST.svg';
+
             break;
           case 'brown':
             this.svgsource = 'images/icons_ophaal-PAPKAR.svg';
