@@ -32,13 +32,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     img {
-      width: 35px;
+      width: 300px;
       margin-right: 6px;
     }
 
     google-map {
-      height: 200px;
-      width: 200px;
+      height: 150px;
+      width: 300px;
     }
 
 
@@ -47,8 +47,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    
   <template is="dom-if" if={{resolve}}>
      <h2>{{datum}}</h2>
-     <img src="{{image}}" />
      <p>{{comment}}</p>
+     <img src="{{image}}" />
      <google-map zoom="17" longitude="{{longitude}}" latitude="{{latitude}}" >
       <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
           draggable="false" title=""></google-map-marker>

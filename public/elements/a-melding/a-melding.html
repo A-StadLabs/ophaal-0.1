@@ -147,6 +147,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-right: 10px;
     }
 
+    a-meldingitem {
+      border: 1px solid grey;
+      padding: 10px;
+    }
+
 
 
 
@@ -187,7 +192,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template is="dom-if" if="{{locationpos}}">
     <file-upload id="imageupload" imgval="{{imageval}}"></file-upload>
-
     <paper-input-container>
   <label>Opmerkingen?</label>
   <input is="iron-input" bind-value="{{comment}}">
