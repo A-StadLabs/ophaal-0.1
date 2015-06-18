@@ -11,6 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../components/polymer/polymer.html">
 <link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../components/google-map/google-map.html">
+<link rel="import" href="../../components/firebase-element/firebase.html">
 
 
 
@@ -35,17 +36,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-right: 6px;
     }
 
+    google-map {
+      height: 200px;
+      width: 200px;
+    }
 
 
   </style>
   <template>
-    
-
+   
+  <template is="dom-if" if={{resolve}}>
      <h2>{{newdatum}}</h2>
      <img src="{{image}}" />
      <p>{{comment}}</p>
-     <google-map zoom="17" longitude="{{longitude}}" latitude="{{latitude}}"></google-map>
-
+     <google-map zoom="17" longitude="{{longitude}}" latitude="{{latitude}}" >
+      <google-map-marker latitude="{{latitude}}" longitude="{{longitude}}"
+          draggable="false" title=""></google-map-marker>
+     </google-map>
+</template>
 <!--      <p>{{newdatum}}</p>
  -->
      
@@ -61,48 +69,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'a-meldingitem',
 
     properties: {
-      datum: {
+      key: {
         type: String,
         value: '',
         notify: true,
         observer: 'hasvalue'
-      },
-      comment: {
-        type: String,
-        value: '',
-        notify: true
-      },
-      image: {
-        type: String,
-        value: '',
-        notify: true
-      },
-      longitude: {
-        type: String,
-        value: '',
-        notify: true
-      },
-      latitude: {
-        type: String,
-        value: '',
-        notify: true
       }
-
-
-
     },
 
 
       ready: function(){
         //console.log('i has streets loaded');
-
+        this.hasvalue();
       },
 
       hasvalue: function(){
-        console.log(this.datum);
+        console.log(this.key);
+        var that = this;
+        var getFB = new Firebase('https://ophaal.firebaseio.com/meldingen/'+this.key);
+        getFB.once('value', function(snap){
+          that.comment = snap.val().comment;
+          that.longitude = snap.val().lon;
+          that.latitude = snap.val().lat;
+          console.log(that.latitude, snap.val().lat);
+          that.image = snap.val().image;
+          that.datum = snap.val().tijd;
+          that.resolve = true;
+        });
+
+        // datum mooi zetten 
         moment.locale('nl');
-        this.newdatum = moment(this.datum).format('dddd D MMMM');
-        //console.log(this.newdatum);
+        this.newdatum = moment(this.datum).format('dddd D MMMM, HH:mm');
+        console.log(this.newdatum);
       }
      
 

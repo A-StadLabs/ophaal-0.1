@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../components/paper-item/paper-item.html">
 
 <link rel="import" href="../../components/firebase-element/firebase.html">
+<link rel="import" href="../../components/firebase-element/firebase-collection.html">
 
 
 <link rel="import" href="../../components/paper-button/paper-button.html">
@@ -30,6 +31,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script src="http://rsvpjs-builds.s3.amazonaws.com/rsvp-latest.min.js"></script>  
 
 <script src="https://cdn.firebase.com/libs/geofire/3.2.2/geofire.min.js"></script>  
+
+<script src="../../components/node-uuid/uuid.js"></script>  
 
 <link rel="import" href="../file-upload/file-upload.html">
 <link rel="import" href="../a-meldingitem/a-meldingitem.html">
@@ -181,7 +184,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     debounce-duration="300"
     id="ophaalkal"></iron-ajax>
 
-<iron-localstorage name="ophaal-bendillen" value="{{palue}}" on-iron-localstorage-load-empty="initializeDefault"></iron-localstorage>
+
 <!-- 
   <div id="geoloc">
     <button>Gebruik mijn huidige locatie!</button>
@@ -195,7 +198,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="vertical">
       <small>AstadLabs Prototype</small>
       <h1>OPHAALKALENDER</h1>
-      <p editable>hello <span>{{value::key}}</span></p>
+      <small>{{userid}}</small>
     </div>
     </div>
 
@@ -207,7 +210,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template is="dom-if" if="{{locationpos}}">
     <file-upload id="imageupload" imgval="{{imageval}}"></file-upload>
-    <p>{{imageval}}</p>
     <paper-input-container>
   <label>Opmerkingen?</label>
   <input is="iron-input" maxlength="144" prevent-invalid-input bind-value="{{comment}}">
@@ -218,17 +220,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </div>
 
+  </div>
+
   <div class="partII">
 
-  
 
-  <template is="dom-repeat" items={{palue}}>
-  <p>{{item.key}}</p>
+  <firebase-collection id="fbgetmeld" location="{{fblocation}}"
+          data="{{usermeldingen}}"></firebase-collection>
+
+  <template is="dom-repeat" items={{usermeldingen}} index-as="key">
+    <a-meldingitem key="{{item.key}}"></a-meldingitem>
   </template>
-  <!-- <a-meldingitem image comment longitude latitude datum></a-meldingitem> -->
-
 
   </div>
+
+  <iron-localstorage name="ophaal-bendillen2" value="{{userid}}"></iron-localstorage>
 
 
 
@@ -254,23 +260,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       ophaal: {
         type: Object
-      },
-      meldingarray: {
-        type: Array
       }
     },
 
     ready: function(){
       this.locationpos = false;
+      //this.$.fbgetmeld.location='https://ophaal.firebaseio.com/user/'+this.userid+'/';
     },
 
     // hier als er nog niets in localstorage zit
 
     initializeDefault: function(){
-      meldingarray = [];
+
     },
 
+
     getLocation: function() {
+
+      this.fblocation = 'https://ophaal.firebaseio.com/user/'+this.userid+'/';
+
       if (navigator.geolocation) {
         this.locpos = navigator.geolocation.getCurrentPosition(showPosition);
         //console.log(this.locpos);
@@ -281,32 +289,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     saveIt: function(){
+
+      if(this.userid==null){
+        this.userid = uuid.v1();
+      };
+
       console.log('ik ga saven: ', longitude, latitude, this.imageval, this.comment);
 
       var today = Date.now();
 
-      testFB = new Firebase('https://bdillen.firebaseio.com/meldingen');
+      testFB = new Firebase('https://ophaal.firebaseio.com/meldingen');
 
-      var testID = testFB.push({'lon':longitude, 'lat':latitude, 'image':this.imageval, 'comment':this.comment, 'tijd': today});
+      var userid = this.userid;
+
+      var testID = testFB.push({'lon':longitude, 'lat':latitude, 'image':this.imageval, 'comment':this.comment, 'tijd': today, 'user': userid });
 
       var newKey = testID.key();
 
       console.log(newKey);
 
-
       this.doGeofire(newKey, longitude, latitude);
 
-      meldingarray.push({'key': newKey});
-      
-      this.set('palue', meldingarray);
-      
-      //this.meldingen.item.push({'key':newKey});
-      //this.set('cartoon.hasEars', false);
+      var userMelding = new Firebase('https://ophaal.firebaseio.com/user/'+userid);
+
+      var usermeldingID = userMelding.push({'key': newKey });
 
     },
 
     doGeofire: function(key, long, lat){
-      var firebaseRef = new Firebase('https://bdillen.firebaseio.com/geopoints/');
+      var firebaseRef = new Firebase('https://ophaal.firebaseio.com/geopoints/');
       var geoFire = new GeoFire(firebaseRef);
       geoFire.set(key, [lat, long]).then(function() {
         console.log("Provided key has been added to GeoFire");
