@@ -20,6 +20,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../components/paper-button/paper-button.html">
 <link rel="import" href="../../components/iron-selector/iron-selector.html">
 
+<link rel="import" href="../../components/iron-localstorage/iron-localstorage.html">
+
+
 <link rel="import" href="../../components/iron-ajax/iron-ajax.html">
 <script src="../../components/lodash/lodash.js"></script>
 <script src="../../components/momentjs/moment.js"></script>
@@ -29,6 +32,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script src="https://cdn.firebase.com/libs/geofire/3.2.2/geofire.min.js"></script>  
 
 <link rel="import" href="../file-upload/file-upload.html">
+<link rel="import" href="../a-meldingitem/a-meldingitem.html">
+
 
 <dom-module id="a-melding">
   <style>
@@ -176,6 +181,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     debounce-duration="300"
     id="ophaalkal"></iron-ajax>
 
+<iron-localstorage name="ophaal-bendillen" value="{{palue}}" on-iron-localstorage-load-empty="initializeDefault"></iron-localstorage>
 <!-- 
   <div id="geoloc">
     <button>Gebruik mijn huidige locatie!</button>
@@ -183,11 +189,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <div class="greenbg">
 
     <div class="intro">
+
        <img src="../../images/a_zwart-rgb.svg">
 
       <div class="vertical">
       <small>AstadLabs Prototype</small>
       <h1>OPHAALKALENDER</h1>
+      <p editable>hello <span>{{value::key}}</span></p>
     </div>
     </div>
 
@@ -212,6 +220,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <div class="partII">
 
+  
+
+  <template is="dom-repeat" items={{palue}}>
+  <p>{{item.key}}</p>
+  </template>
+  <!-- <a-meldingitem image comment longitude latitude datum></a-meldingitem> -->
 
 
   </div>
@@ -237,11 +251,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     properties: {
       imageval: {
         type: String
+      },
+      ophaal: {
+        type: Object
+      },
+      meldingarray: {
+        type: Array
       }
     },
 
     ready: function(){
       this.locationpos = false;
+    },
+
+    // hier als er nog niets in localstorage zit
+
+    initializeDefault: function(){
+      meldingarray = [];
     },
 
     getLocation: function() {
@@ -257,7 +283,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     saveIt: function(){
       console.log('ik ga saven: ', longitude, latitude, this.imageval, this.comment);
 
-      var today = new moment();
+      var today = Date.now();
 
       testFB = new Firebase('https://bdillen.firebaseio.com/meldingen');
 
@@ -267,7 +293,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       console.log(newKey);
 
+
       this.doGeofire(newKey, longitude, latitude);
+
+      meldingarray.push({'key': newKey});
+      
+      this.set('palue', meldingarray);
+      
+      //this.meldingen.item.push({'key':newKey});
+      //this.set('cartoon.hasEars', false);
 
     },
 
