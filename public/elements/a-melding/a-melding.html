@@ -24,6 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script src="../../components/lodash/lodash.js"></script>
 <script src="../../components/momentjs/moment.js"></script>
 <script src="../../components/momentjs/locale/nl.js"></script>
+<script src="http://rsvpjs-builds.s3.amazonaws.com/rsvp-latest.min.js"></script>  
 
 <script src="https://cdn.firebase.com/libs/geofire/3.2.2/geofire.min.js"></script>  
 
@@ -209,6 +210,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </div>
 
+  <div class="partII">
+
+
+
+  </div>
 
 
 
@@ -251,9 +257,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     saveIt: function(){
       console.log('ik ga saven: ', longitude, latitude, this.imageval, this.comment);
 
+      var today = new moment();
+
       testFB = new Firebase('https://bdillen.firebaseio.com/meldingen');
 
-      var testID = testFB.push({'lon':longitude, 'lat':latitude, 'image':this.imageval, 'comment':this.comment});
+      var testID = testFB.push({'lon':longitude, 'lat':latitude, 'image':this.imageval, 'comment':this.comment, 'tijd': today});
 
       var newKey = testID.key();
 
