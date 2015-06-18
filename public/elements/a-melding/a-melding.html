@@ -270,6 +270,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     saveIt: function(){
 
+      this.getLocation();
+
       if(this.userid==null){
         this.userid = uuid.v1();
       };

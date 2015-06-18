@@ -1,0 +1,15 @@
+{
+  "name": "qr-reader",
+  "homepage": "https://github.com/educastellano/qr-reader",
+  "version": "0.0.3",
+  "_release": "0.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.3",
+    "commit": "df6f7f0e298807fc648ec11f8f5efc034165648a"
+  },
+  "_source": "git://github.com/educastellano/qr-reader.git",
+  "_target": "~0.0.3",
+  "_originalSource": "educastellano/qr-reader",
+  "_direct": true
+}

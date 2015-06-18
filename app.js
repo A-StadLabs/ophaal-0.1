@@ -7,7 +7,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var request = require('request');
-
+var S = require('string');
 
 var app = express();
 app.set('port', (process.env.PORT || 3000));
@@ -36,13 +36,26 @@ app.get('/adres', function(req, res){
   var postal = req.query.postal;
   //req.session.userobject;
   request.get({url: 'http://www.ophaalkalender.be/calendar/findstreets?query='+street+'&zipcode='+postal }, function(error, response, body){
+
       res.send(body);
   });
 });
 
 //http://www.ophaalkalender.be/calendar/findstreets?query=g&zipcode=2050
 
-
+// Get address for geolocation
+//http://www.ophaalkalender.be/api/rides?id=100442&housenumber=0&start=1433109600&end=1436738400&_=1434456216844
+app.get('/geoadres', function(req, res){
+  var lon = req.query.lon;
+  var lat = req.query.lat;
+  //req.session.userobject;
+  request.get({url: 'http://www.gemeentezoeker.be/GemeenteZoeker.php?mode=developers&lat='+lat+'&lng='+lon+'&radius=0.3' }, function(error, response, body){
+      //body = S(body).stripTags('tr', 'td').s; //&lt;div&gt;hi&lt;/div&gt;
+      ///body = S(body).lines();
+      console.log(body);
+      res.send(body);
+  });
+});
 // Get rides
 //http://www.ophaalkalender.be/api/rides?id=100442&housenumber=0&start=1433109600&end=1436738400&_=1434456216844
 app.get('/rides', function(req, res){
