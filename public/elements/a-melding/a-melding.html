@@ -22,6 +22,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../components/paper-button/paper-button.html">
+<link rel="import" href="../../components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../../components/neon-animation/animations/fade-out-animation.html">
 <link rel="import" href="../../components/iron-selector/iron-selector.html">
 
 <link rel="import" href="../../components/iron-localstorage/iron-localstorage.html">
@@ -46,8 +48,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
  :host {
       @apply(--theme-main-font);
       @apply(--layout-vertical);
-      @apply(--layout-start);
-
+      @apply(--layout-center);
+      background-color: var(--theme2-main-color);
+      width: 100%;
+      height: 100%;
     }
 
     h1,h2,h3,h4 {
@@ -77,53 +81,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 
-    button {
+    paper-button {
       @apply(--theme-buttons);
 
     }
 
 
     paper-input-container{
-/*      @apply(--theme2-colors);*/
       --paper-input-container-focus-color:black;
       background-color: white;
       border-radius: 4px;
-
-
     }
 
 
-
-
-    #regloc {
-      width: 80%;
-            @apply(--layout-vertical);
-      @apply(--layout-start);
-    }
-
-    #geoloc {
-      margin-top: 20px;
-      width: 100%;
-    }
-
-
-    .partI {
-      background-color: var(--theme2-main-color);
-      width: 100%;
+    paper-dialog {
       margin: 0px;
-      box-sizing: border-box;
-      padding: 50px 0px 50px 50px;
-      @apply(--layout-vertical);
-      @apply(--layout-start);
+      padding: 0px;
+      --paper-dialog-background-color: var(--theme2-main-color);
+      width: 50%;
+      height: 50%;
+
     }
 
-    .partII {
-      background-color: white;
-      width: 100%;
-      margin: 0px;
-      box-sizing: border-box;
-      padding: 30px 50px 50px 50px;
-    }
+
+
 
 
 
@@ -139,13 +120,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       @apply(--layout-wrap);
     }
 
-    a-calitem {
-      width: auto;
-    }
 
-    a-fractie {
-      margin-right: 10px;
-    }
 
     a-meldingitem {
       border: 1px solid grey;
@@ -164,59 +139,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     debounce-duration="300"
     id="ophaalkal"></iron-ajax>
 
+      <iron-localstorage name="ophaal-bendillen" value="{{palue}}" on-iron-localstorage-load-empty="initializeDefault"></iron-localstorage>
+
+      <div>  
+
+          <template is="dom-if" if="{{!locationpos}}">
 
 
-  <div class="partI">
-      <div class="regloc">
+            <paper-dialog modal entry-animation="scale-up-animation" exit-animation="fade-out-animation" opened>
+              <h2>Header</h2>
+              <div>
+                Je toestel zal je huidige locatie vragen. Op deze manier kunnen we bepalen op welke plaats de melding zich plaatsvindt.
+              </div>
+              <paper-button dialog-confirm on-tap="getLocation">Ok, ga door</paper-button>
+            </paper-dialog>
+          </template>
 
-      <a-intro></a-intro>
-      
-  
+          <template is="dom-if" if="{{locationpos}}">
+            <file-upload id="imageupload" imgval="{{imageval}}"></file-upload>
+            <paper-input-container>
+          <label>Opmerkingen?</label>
+          <input is="iron-input" bind-value="{{comment}}">
+            <button on-tap="saveIt">Versturen</button>
+          </template>
 
-<iron-localstorage name="ophaal-bendillen" value="{{palue}}" on-iron-localstorage-load-empty="initializeDefault"></iron-localstorage>
+          <firebase-collection id="fbgetmeld" location="{{fblocation}}"
+                  data="{{usermeldingen}}"></firebase-collection>
 
-<!-- 
-  <div id="geoloc">
-    <button>Gebruik mijn huidige locatie!</button>
-  </div> -->
-  <div class="greenbg">
-
-    
-
-  <div id="regloc">
-
-  <template is="dom-if" if="{{!locationpos}}">
-  <p>Dus hier moet een button komen met een beetje uitleg; als u hier klikt gaat uw telefoon vragen of hij uw locatie mag doorgeven, geef toestemming om verder te gaan. </p>
-  <paper-button on-tap="getLocation">Geef mijn locatie door</paper-button>
-  </template>
-
-  <template is="dom-if" if="{{locationpos}}">
-    <file-upload id="imageupload" imgval="{{imageval}}"></file-upload>
-    <paper-input-container>
-  <label>Opmerkingen?</label>
-  <input is="iron-input" bind-value="{{comment}}">
-    <button on-tap="saveIt">Versturen</button>
-  </template>
-
-  </div>
-
-  </div>
-
-  <div class="partII">
+          <template is="dom-repeat" items={{usermeldingen}} index-as="key">
+            <a-meldingitem key="{{item.key}}"></a-meldingitem>
+          </template>
 
 
-  <firebase-collection id="fbgetmeld" location="{{fblocation}}"
-          data="{{usermeldingen}}"></firebase-collection>
-
-  <template is="dom-repeat" items={{usermeldingen}} index-as="key">
-    <a-meldingitem key="{{item.key}}"></a-meldingitem>
-  </template>
-
-  </div>
-
-  <iron-localstorage name="ophaal-bendillen2" value="{{userid}}"></iron-localstorage>
+          <iron-localstorage name="ophaal-bendillen2" value="{{userid}}"></iron-localstorage>
 
 
+      </div>
 
 
 </template>
@@ -245,8 +203,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     ready: function(){
       this.locationpos = false;
-      //this.$.fbgetmeld.location='https://ophaal.firebaseio.com/user/'+this.userid+'/';
+
+
     },
+
+
 
     // hier als er nog niets in localstorage zit
 
