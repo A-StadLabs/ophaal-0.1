@@ -51,7 +51,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       @apply(--layout-center);
       background-color: var(--theme2-main-color);
       width: 100%;
-      height: 100%;
+      min-height: 100%;
     }
 
     h1,h2,h3,h4 {
@@ -94,15 +94,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
 
-    paper-dialog {
-      margin: 0px;
+/*      margin: 0px 0px 0px 0px;
       padding: 0px;
       --paper-dialog-background-color: var(--theme2-main-color);
       width: 50%;
       height: 50%;
-
+      position: fixed;
+*/
+    paper-dialog {
+      position: fixed;
+      --paper-dialog-background-color: var(--theme2-main-color);
+      height: 50%;
+      top: 20%;
+      left: 20%;
+      bottom: 20%;
+      right: 20%;
+      margin: 0px;
+      box-sizing: border-box;
+      padding: 5%;
     }
-
 
 
 
@@ -146,11 +156,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <template is="dom-if" if="{{!locationpos}}">
 
 
-            <paper-dialog modal entry-animation="scale-up-animation" exit-animation="fade-out-animation" opened>
+            <paper-dialog modal entry-animation="scale-up-animation" exit-animation="fade-out-animation" opened class="dialog">
               <h2>Header</h2>
-              <div>
+              <p>
                 Je toestel zal je huidige locatie vragen. Op deze manier kunnen we bepalen op welke plaats de melding zich plaatsvindt.
-              </div>
+              </p>
               <paper-button dialog-confirm on-tap="getLocation">Ok, ga door</paper-button>
             </paper-dialog>
           </template>
