@@ -86,7 +86,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       hasvalue: function(){
         console.log(this.key);
         var that = this;
-        var getFB = new Firebase('https://ophaal.firebaseio.com/meldingen/'+this.key);
+        var getFB = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/meldingen/'+this.key);
         getFB.once('value', function(snap){
           that.comment = snap.val().comment;
           that.longitude = snap.val().lon;

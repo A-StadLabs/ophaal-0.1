@@ -1,47 +1,27 @@
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
 <link rel="import" href="../../components/polymer/polymer.html">
 <link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800">
 <link rel="import" href="../../components/paper-input/paper-input.html">
 <link rel="import" href="../../components/paper-item/paper-item.html">
-
 <link rel="import" href="../../components/firebase-element/firebase.html">
 <link rel="import" href="../../components/firebase-element/firebase-collection.html">
-
 <link rel="import" href="../a-intro/a-intro.html">
 <link rel="import" href="../theme-style.html">
-
 <link rel="import" href="../../components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../components/paper-button/paper-button.html">
 <link rel="import" href="../../components/neon-animation/animations/scale-up-animation.html">
 <link rel="import" href="../../components/neon-animation/animations/fade-out-animation.html">
 <link rel="import" href="../../components/iron-selector/iron-selector.html">
-
 <link rel="import" href="../../components/iron-localstorage/iron-localstorage.html">
-
-
 <link rel="import" href="../../components/iron-ajax/iron-ajax.html">
 <script src="../../components/lodash/lodash.js"></script>
 <script src="../../components/momentjs/moment.js"></script>
 <script src="../../components/momentjs/locale/nl.js"></script>
-<script src="http://rsvpjs-builds.s3.amazonaws.com/rsvp-latest.min.js"></script>  
-
-<script src="https://cdn.firebase.com/libs/geofire/3.2.2/geofire.min.js"></script>  
-
-<script src="../../components/node-uuid/uuid.js"></script>  
-
+<!-- <script src="https://cdn.firebase.com/libs/geofire/3.2.2/geofire.min.js"></script> 
+ --><script src="../../components/node-uuid/uuid.js"></script>  
 <link rel="import" href="../file-upload/file-upload.html">
 <link rel="import" href="../a-meldingitem/a-meldingitem.html">
-
+<link rel="import" href="../../components/firebase-element/firebase-collection.html">
 
 <dom-module id="a-melding">
   <style>
@@ -60,32 +40,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       padding: 0px;
     }
 
-
     h3 {
       font-size: 20px;
     }
-
 
     h4 {
       margin: 0px;
       padding: 0px;
       font-size: 14px;
       color: #cccccc;
-
     }
-
 
     h1 {
       font-size: 26px;
     }
 
-
-
     paper-button {
       @apply(--theme-buttons);
-
     }
-
 
     paper-input-container{
       --paper-input-container-focus-color:black;
@@ -93,20 +65,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       border-radius: 4px;
     }
 
-
     paper-dialog {
       margin: 0px;
       padding: 0px;
       --paper-dialog-background-color: var(--theme2-main-color);
       width: 50%;
       height: 50%;
-
     }
-
-
-
-
-
 
     .vertical {
       @apply(--layout-vertical);
@@ -120,15 +85,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       @apply(--layout-wrap);
     }
 
-
-
     a-meldingitem {
       border: 1px solid grey;
       padding: 10px;
     }
-
-
-
 
   </style>
   <template>
@@ -142,40 +102,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <iron-localstorage name="ophaal-bendillen" value="{{palue}}" on-iron-localstorage-load-empty="initializeDefault"></iron-localstorage>
 
       <div>  
-
-          <template is="dom-if" if="{{!locationpos}}">
-
-
-            <paper-dialog modal entry-animation="scale-up-animation" exit-animation="fade-out-animation" opened>
-              <h2>Header</h2>
-              <div>
-                Je toestel zal je huidige locatie vragen. Op deze manier kunnen we bepalen op welke plaats de melding zich plaatsvindt.
-              </div>
-              <paper-button dialog-confirm on-tap="getLocation">Ok, ga door</paper-button>
-            </paper-dialog>
-          </template>
-
-          <template is="dom-if" if="{{locationpos}}">
-            <file-upload id="imageupload" imgval="{{imageval}}"></file-upload>
-            <paper-input-container>
-          <label>Opmerkingen?</label>
-          <input is="iron-input" bind-value="{{comment}}">
+          <file-upload id="imageupload" imgval="{{imageval}}"></file-upload>
+          <paper-input-container>
+            <label>Opmerkingen?</label>
+            <input is="iron-input" bind-value="{{comment}}">
             <button on-tap="saveIt">Versturen</button>
-          </template>
 
-          <firebase-collection id="fbgetmeld" location="{{fblocation}}"
-                  data="{{usermeldingen}}"></firebase-collection>
+          <firebase-collection id="fbgetmeld" location="{{fblocation}}" data="{{usermeldingen}}"></firebase-collection>
 
           <template is="dom-repeat" items={{usermeldingen}} index-as="key">
             <a-meldingitem key="{{item.key}}"></a-meldingitem>
           </template>
 
-
           <iron-localstorage name="ophaal-bendillen2" value="{{userid}}"></iron-localstorage>
 
-
       </div>
-
 
 </template>
 </dom-module>
@@ -187,6 +128,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
     //window.dispatchEvent(build);
+    console.log('heb positie: ', latitude, longitude);
   };
 
   Polymer({
@@ -203,26 +145,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     ready: function(){
       this.locationpos = false;
-
-
+      this.getLocation();
     },
-
-
-
     // hier als er nog niets in localstorage zit
 
     initializeDefault: function(){
 
     },
 
-
     getLocation: function() {
-
-      this.fblocation = 'https://ophaal.firebaseio.com/user/'+this.userid+'/';
+      this.fblocation = 'https://blazing-fire-6426.firebaseio.com/ophaal/user/'+this.userid+'/';
 
       if (navigator.geolocation) {
         this.locpos = navigator.geolocation.getCurrentPosition(showPosition);
-        //console.log(this.locpos);
+        console.log(this.locpos);
         this.locationpos = true;
       } else {
         console.log("Geolocation is not supported by this browser.");
@@ -230,7 +166,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     saveIt: function(){
-
       this.getLocation();
 
       if(this.userid==null){
@@ -241,7 +176,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       var today = Date.now();
 
-      testFB = new Firebase('https://ophaal.firebaseio.com/meldingen');
+      testFB = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/meldingen');
 
       var userid = this.userid;
 
@@ -251,16 +186,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       console.log(newKey);
 
-      this.doGeofire(newKey, longitude, latitude);
+      //this.doGeofire(newKey, longitude, latitude);
 
-      var userMelding = new Firebase('https://ophaal.firebaseio.com/user/'+userid);
+      var userMelding = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/user/'+userid);
 
       var usermeldingID = userMelding.push({'key': newKey });
 
     },
 
     doGeofire: function(key, long, lat){
-      var firebaseRef = new Firebase('https://ophaal.firebaseio.com/geopoints/');
+      var firebaseRef = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/geopoints/');
       var geoFire = new GeoFire(firebaseRef);
       geoFire.set(key, [lat, long]).then(function() {
         console.log("Provided key has been added to GeoFire");
@@ -268,8 +203,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         console.log("Error: " + error);
       });
     }
-
- 
 
   });
 })();

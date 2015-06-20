@@ -36,8 +36,7 @@ app.get('/adres', function(req, res){
   var postal = req.query.postal;
   //req.session.userobject;
   request.get({url: 'http://www.ophaalkalender.be/calendar/findstreets?query='+street+'&zipcode='+postal }, function(error, response, body){
-
-      res.send(body);
+    res.send(body);
   });
 });
 

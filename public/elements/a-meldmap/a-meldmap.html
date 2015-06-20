@@ -11,8 +11,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../components/polymer/polymer.html">
 <link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../components/google-map/google-map.html">
-<link rel="import" href="../../components/google-map-marker/google-map-marker.html">
+<link rel="import" href="../../components/google-map/google-map-marker.html">
 
+<link rel="import" href="../../components/firebase-element/firebase.html">
+<link rel="import" href="../../components/firebase-element/firebase-collection.html">
 
 
 
@@ -42,18 +44,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 100vw;
     }
 
-
-
   </style>
   <template>
-    
-    <google-map latitude="37.779" longitude="-122.3892" min-zoom="9" max-zoom="11" language="en">
-  <google-map-marker latitude="37.779" longitude="-122.3892"
-                     title="Go Giants!" draggable="true">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/San_Francisco_Giants_Cap_Insignia.svg/200px-San_Francisco_Giants_Cap_Insignia.svg.png" />
-  </google-map-marker>
-</google-map>
+    <!-- <firebase-element
+          order-by-child="tijd"
+          location="https://ophaal.firebaseio.com/meldingen"
+          data="{{datameld}}" log></firebase-element> -->
 
+    <firebase-collection id="fbgetmeld" location="https://blazing-fire-6426.firebaseio.com/ophaal/meldingen" data="{{datameld}}" log></firebase-collection>
+
+    <h1>Hello from <span>{{foo}}</span></h1>
+  <!--   <google-map min-zoom="9" max-zoom="14" language="en" fit-to-markers>
+      <google-map-marker latitude="37.779" longitude="-122.3892"
+                     title="Go Giants!" draggable="true">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/San_Francisco_Giants_Cap_Insignia.svg/200px-San_Francisco_Giants_Cap_Insignia.svg.png" />
+      </google-map-marker>
+
+</google-map> -->
+    <template is="dom-repeat" items="{{datameld}}">
+      <p>hello</p>
+    </template>
   </template>
 </dom-module>
 
@@ -71,21 +81,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         notify: true,
         observer: 'hasvalue'
       }
-
-
-
     },
-
 
       ready: function(){
         //console.log('i has streets loaded');
-
       },
 
       hasvalue: function(){
-        console.log(this.datum);
-        moment.locale('nl');
-        this.newdatum = moment(this.datum).format('dddd D MMMM');
+        console.log(this.foo);
+        // moment.locale('nl');
+        // this.newdatum = moment(this.datum).format('dddd D MMMM');
         //console.log(this.newdatum);
       }
      
