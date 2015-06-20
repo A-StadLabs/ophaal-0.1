@@ -54,16 +54,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <firebase-collection id="fbgetmeld" location="https://blazing-fire-6426.firebaseio.com/ophaal/meldingen" data="{{datameld}}" log></firebase-collection>
 
     <h1>Hello from <span>{{foo}}</span></h1>
-  <!--   <google-map min-zoom="9" max-zoom="14" language="en" fit-to-markers>
-      <google-map-marker latitude="37.779" longitude="-122.3892"
-                     title="Go Giants!" draggable="true">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/San_Francisco_Giants_Cap_Insignia.svg/200px-San_Francisco_Giants_Cap_Insignia.svg.png" />
+   <google-map min-zoom="9" max-zoom="17" language="en" fit-to-markers>
+  <template is="dom-repeat" items="{{datameld}}">
+      <google-map-marker latitude="{{item.lat}}" longitude="{{item.lon}}"
+                     title="{{item.comment}}" draggable="false">
+        
       </google-map-marker>
-
-</google-map> -->
-    <template is="dom-repeat" items="{{datameld}}">
-      <p>hello</p>
-    </template>
+</template>
+</google-map>
+    <!-- <template is="dom-repeat" items="{{datameld}}">
+      <p>{{item.comment}}</p>
+    </template> -->
   </template>
 </dom-module>
 
