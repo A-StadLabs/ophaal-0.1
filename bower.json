@@ -17,6 +17,7 @@
     "node-uuid": "~1.4.3",
     "qr-reader": "educastellano/qr-reader#~0.0.3",
     "qr-code": "educastellano/qr-code#~0.1.7",
-    "page": "visionmedia/page.js#~1.6.3"
+    "page": "visionmedia/page.js#~1.6.3",
+    "leaflet-map": "leaflet-extras/leaflet-map#~1.0.1"
   }
 }

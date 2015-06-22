@@ -1,0 +1,41 @@
+{
+  "name": "leaflet-map",
+  "version": "1.0.1",
+  "authors": [
+    "Hendrik Brummermann <nhnb@users.sourceforge.net>",
+    "Prateek Saxena <prtksxna@gmail.com>"
+  ],
+  "description": "Leaflet map as web-component based on polymer",
+  "main": "leaflet-map.html",
+  "homepage": "https://leaflet-extras.github.io/leaflet-map/",
+  "keywords": [
+    "polymer",
+    "web-components",
+    "leaflet",
+    "leafletjs",
+    "map"
+  ],
+  "license": "BSD 2-Clause",
+  "ignore": [
+    "**/.*",
+    "demo.html",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^1.0.0",
+    "leaflet": "^0.7.3"
+  },
+  "_release": "1.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.1",
+    "commit": "c817df071598dad6914c5575600cd00fc8b3d38d"
+  },
+  "_source": "git://github.com/leaflet-extras/leaflet-map.git",
+  "_target": "~1.0.1",
+  "_originalSource": "leaflet-extras/leaflet-map",
+  "_direct": true
+}

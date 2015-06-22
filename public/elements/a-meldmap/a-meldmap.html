@@ -10,8 +10,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../components/polymer/polymer.html">
 <link rel="import" href="../../components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../../components/google-map/google-map.html">
-<link rel="import" href="../../components/google-map/google-map-marker.html">
+<link rel="import" href="../../components/leaflet-map/leaflet-map.html">
+
 
 <link rel="import" href="../../components/firebase-element/firebase.html">
 <link rel="import" href="../../components/firebase-element/firebase-collection.html">
@@ -39,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-right: 6px;
     }
 
-    google-map {
+    leaflet-map {
       height: 100vh;
       width: 100vw;
     }
@@ -53,15 +53,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <firebase-collection id="fbgetmeld" location="https://blazing-fire-6426.firebaseio.com/ophaal/meldingen" data="{{datameld}}" log></firebase-collection>
 
-    <h1>Hello from <span>{{foo}}</span></h1>
-   <google-map min-zoom="9" max-zoom="17" language="en" fit-to-markers>
-  <template is="dom-repeat" items="{{datameld}}">
-      <google-map-marker latitude="{{item.lat}}" longitude="{{item.lon}}"
-                     title="{{item.comment}}" draggable="false">
-        
-      </google-map-marker>
-</template>
-</google-map>
+     
+  <leaflet-map zoom="12" fitToMarkers latitude="51.2300769" longitude="4.386597">
+   <leaflet-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="51.2300769" longitude="4.386597">test
+      </leaflet-marker>
+  <!-- <template is="dom-repeat" items="{{datameld}}">
+      <leaflet-marker iconUrl="https://stendhalgame.org/images/mapmarker/me.png" latitude="{{item.lat}}" longitude="{{item.lon}}">
+      </leaflet-marker>
+</template> -->
+</leaflet-map>
     <!-- <template is="dom-repeat" items="{{datameld}}">
       <p>{{item.comment}}</p>
     </template> -->

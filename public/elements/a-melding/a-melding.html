@@ -146,7 +146,7 @@
 <!-- >>>>>>> origin/master
  -->            <button on-tap="saveIt">Versturen</button>
 
-          <firebase-collection id="fbgetmeld" location="{{fblocation}}" data="{{usermeldingen}}"></firebase-collection>
+          <firebase-collection id="fbgetmeld" location="{{fblocation}}" data="{{usermeldingen}}" order-by-child="key"></firebase-collection>
 
           <template is="dom-repeat" items={{usermeldingen}} index-as="key">
             <a-meldingitem key="{{item.key}}"></a-meldingitem>
@@ -236,6 +236,9 @@
       var userMelding = new Firebase('https://blazing-fire-6426.firebaseio.com/ophaal/user/'+userid);
 
       var usermeldingID = userMelding.push({'key': newKey });
+
+      this.imageval = null;
+      this.comment = '';
 
     },
 
