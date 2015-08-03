@@ -33,51 +33,9 @@
 
 <body unresolved class="fullbleed">
   <template is="dom-bind" id="app">
-	<!-- <a-ophaal foo="BAR"></a-ophaal> -->
-  <!-- <a-melding foo="BAR"></a-melding> -->
 
-  
-
-  <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-    <a data-route="meld" href="/">
-      <iron-icon icon="home"></iron-icon>
-      <span>Melding</span>
-    </a>
-
-    <a data-route="map" href="/map">
-      <iron-icon icon="info"></iron-icon>
-      <span>Map</span>
-    </a>
-
-    <a data-route="ophaal" href="/ophaal">
-      <iron-icon icon="mail"></iron-icon>
-      <span>Ophaal</span>
-    </a>
-  </paper-menu>
-
-  <iron-pages attr-for-selected="data-route" selected="{{route}}">
-
-  <section data-route="map">
-    <a-meldmap foo="Bennissan"></a-meldmap>
-  </section>
-
-  <section data-route="meld">
-    <a-melding foo="BAR"></a-melding>
-  </section>
-
-  <section data-route="ophaal">
     <a-ophaal foo="BAR"></a-ophaal>
-  </section>
- 
-  </iron-pages>
-  <!-- <paper-dialog modal entry-animation="scale-up-animation" exit-animation="fade-out-animation" opened id="dialog">
-    <h2>Header</h2>
-    <div>
-    Je toestel zal je huidige locatie vragen. Op deze manier kunnen we bepalen op welke plaats de melding zich plaatsvindt.
-    </div>
-    <paper-button dialog-confirm on-tap="getLocation">Ok, ga door</paper-button>
-  </paper-dialog> -->
-
+  
   </template>
 
   <!-- build:js scripts/app.js -->
